@@ -1,0 +1,32 @@
+{
+  "name": "beautiful-ios",
+  "version": "0.1.0",
+  "description": "Write, review, port, and enforce idiomatic native iOS apps in Swift 6 + SwiftUI written as code: three skills distilled from Apple's SwiftUI and concurrency documentation, the App Store guidance, and the facta iOS handbook, plus a drop-in SwiftLint and swift-format config.",
+  "license": "MIT",
+  "author": {
+    "name": "Facta-Dev",
+    "url": "https://github.com/Facta-Dev"
+  },
+  "homepage": "https://github.com/Facta-Dev/beautifulios",
+  "repository": "https://github.com/Facta-Dev/beautifulios",
+  "keywords": [
+    "apns",
+    "best-practices",
+    "code-review",
+    "ios",
+    "keychain",
+    "porting",
+    "skill",
+    "strict-concurrency",
+    "swift",
+    "swift-6",
+    "swiftlint",
+    "swiftui",
+    "xcodegen"
+  ],
+  "skills": [
+    "./skills/ios-best-practices",
+    "./skills/ios-port",
+    "./skills/ios-review"
+  ]
+}

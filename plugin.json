@@ -1,0 +1,58 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "beautiful-ios",
+  "version": "0.1.0",
+  "description": "Write, review, port, and enforce idiomatic native iOS apps in Swift 6 + SwiftUI written as code: three skills distilled from Apple's SwiftUI and concurrency documentation, the App Store guidance, and the facta iOS handbook, plus a drop-in SwiftLint and swift-format config.",
+  "author": {
+    "name": "Facta-Dev",
+    "url": "https://github.com/Facta-Dev"
+  },
+  "homepage": "https://github.com/Facta-Dev/beautifulios",
+  "repository": "https://github.com/Facta-Dev/beautifulios",
+  "license": "MIT",
+  "keywords": [
+    "apns",
+    "best-practices",
+    "code-review",
+    "ios",
+    "keychain",
+    "porting",
+    "skill",
+    "strict-concurrency",
+    "swift",
+    "swift-6",
+    "swiftlint",
+    "swiftui",
+    "xcodegen"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Beautiful iOS",
+        "shortDescription": "Write, review, port iOS apps",
+        "longDescription": "Three skills for native iOS developers on Swift 6 + SwiftUI written as code, distilled from Apple's SwiftUI and concurrency documentation, the App Store guidance, and the facta iOS handbook.\n\nios-best-practices guides new native code: views as code with no visual builders, Swift 6 strict concurrency and main-actor isolation, Swift packages that enforce the Domain/Data/UI/App layers, UDF with @Observable ViewModels, NavigationStack and validated deep links, GRDB and the outbox, Keychain secrets, APNs, MetricKit and the older-iPhone performance budget.\n\nios-review reviews a SwiftUI view, Observable ViewModel, package/target boundary, concurrency change, GRDB/outbox path, deep link, APNs handler, or diff and returns a prioritized report. Architecture and main-actor contracts rank above everything. Every finding cites a file and line, the rule it breaks, and the smallest fix.\n\nios-port ports a React Native, web, UIKit/storyboard or legacy screen to SwiftUI-as-code with the same behavior. It ports the original tests first and writes a PORTING.md.\n\nThe skills contain instructions and reference text only. They make no network calls and collect no data. When a Swift/Xcode toolchain is available, the skills run swift test, swiftlint, and xcodebuild on your project; without one, they work from the code alone. A drop-in SwiftLint and swift-format config is available in the GitHub repository.",
+        "developerName": "Facta-Dev",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Write idiomatic Swift 6 + SwiftUI apps",
+          "Review iOS code with cited rules",
+          "Port RN, web or UIKit screens to SwiftUI"
+        ],
+        "websiteURL": "https://github.com/Facta-Dev/beautifulios",
+        "supportURL": "https://github.com/Facta-Dev/beautifulios/issues",
+        "privacyPolicyURL": "https://github.com/Facta-Dev/beautifulios/blob/main/PRIVACY.md",
+        "defaultPrompt": [
+          "Review this SwiftUI screen and list what to fix first",
+          "Port this React Native screen to SwiftUI",
+          "Fix the main-actor isolation in this ViewModel"
+        ],
+        "brandColor": "#0A84FF",
+        "composerIcon": "./assets/icon.png",
+        "logo": "./assets/icon.png"
+      },
+      "publication": {
+        "release_notes": "Initial release: three iOS skills, the package and main-actor contract, and a proven SwiftLint config."
+      }
+    }
+  }
+}

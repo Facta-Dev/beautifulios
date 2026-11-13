@@ -1,0 +1,61 @@
+# Beautiful iOS drop-in SwiftLint config.
+#
+# Copy next to your project (or point SwiftLint at it with --config). It
+# enforces the machine-checkable half of the ios-best-practices skill.
+#
+#   swiftlint --strict
+#
+# A disabled rule, a raised threshold or a grown baseline is a contract change,
+# not a convenience. A // swiftlint:disable names the rule and the reason.
+
+opt_in_rules:
+  - empty_count
+  - explicit_init
+  - force_unwrapping
+  - implicitly_unwrapped_optional
+  - overridden_super_call
+  - redundant_nil_coalescing
+  - unavailable_function
+  - untyped_error_in_catch
+  - vertical_parameter_alignment_on_call
+
+line_length:
+  warning: 120
+  error: 160
+  ignores_comments: false
+
+file_length:
+  warning: 500
+  error: 800
+
+type_body_length:
+  warning: 300
+  error: 500
+
+function_body_length:
+  warning: 60
+  error: 100
+
+cyclomatic_complexity:
+  warning: 15
+  error: 25
+
+function_parameter_count:
+  warning: 6
+  error: 8
+
+identifier_name:
+  min_length:
+    warning: 2
+    error: 1
+  excluded:
+    - id
+    - x
+    - y
+
+reporter: "xcode"
+
+excluded:
+  - .build
+  - examples/minimal/.build
+  - DerivedData

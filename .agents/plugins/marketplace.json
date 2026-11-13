@@ -1,0 +1,20 @@
+{
+  "name": "beautiful-ios",
+  "interface": {
+    "displayName": "Beautiful iOS"
+  },
+  "plugins": [
+    {
+      "name": "beautiful-ios",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

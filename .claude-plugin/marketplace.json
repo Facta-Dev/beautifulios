@@ -1,0 +1,15 @@
+{
+  "name": "beautiful-ios",
+  "owner": {
+    "name": "Facta-Dev",
+    "url": "https://github.com/Facta-Dev"
+  },
+  "description": "Skills for writing beautiful, fast native iOS apps with Claude.",
+  "plugins": [
+    {
+      "name": "beautiful-ios",
+      "source": "./",
+      "description": "Skills that teach Claude to write, review, and port idiomatic Swift 6 + SwiftUI apps, with the package and main-actor contract and a proven SwiftLint config."
+    }
+  ]
+}
