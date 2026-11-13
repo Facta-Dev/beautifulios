@@ -219,16 +219,17 @@ rule without a source and a failing example is a preference, not a rule. See
 ## Siblings
 
 Beautiful iOS is part of the Beautiful series for the facta playbooks:
+[beautiful-j2ee](https://github.com/Facta-Dev/beautiful-j2ee),
+[beautifulandroid](https://github.com/Facta-Dev/beautifulandroid),
+[beautifulcli](https://github.com/Facta-Dev/beautifulcli),
+[beautifulextension](https://github.com/Facta-Dev/beautifulextension),
 [beautifulgo](https://github.com/Facta-Dev/beautifulgo),
 [beautifulnodejs](https://github.com/Facta-Dev/beautifulnodejs),
 [beautifulpython](https://github.com/Facta-Dev/beautifulpython),
-[beautifulrust](https://github.com/Facta-Dev/beautifulrust),
+[beautifulqt](https://github.com/Facta-Dev/beautifulqt),
 [beautifulreact](https://github.com/Facta-Dev/beautifulreact),
-[beautifulextension](https://github.com/Facta-Dev/beautifulextension),
-[beautifulcli](https://github.com/Facta-Dev/beautifulcli),
 [beautifulreactnative](https://github.com/Facta-Dev/beautifulreactnative),
-[beautifulqt](https://github.com/Facta-Dev/beautifulqt) and
-[beautifulandroid](https://github.com/Facta-Dev/beautifulandroid).
+[beautifulrust](https://github.com/Facta-Dev/beautifulrust).
 
 ## License
 
