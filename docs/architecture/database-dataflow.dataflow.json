@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "beautifulios — Dataflow: cache, outbox, secrets and the server",
+    "quality_profile": "showcase",
+    "output": "database-dataflow.dataflow.html"
+  },
+  "stages": [
+    {
+      "label": "Screens"
+    },
+    {
+      "label": "Use cases"
+    },
+    {
+      "label": "Data adapters"
+    },
+    {
+      "label": "Device state"
+    },
+    {
+      "label": "Backend API"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "screen",
+      "type": "frontend",
+      "label": "SwiftUI screen",
+      "sublabel": "one closed state",
+      "stage": 0,
+      "row": 0
+    },
+    {
+      "id": "usecase",
+      "type": "backend",
+      "label": "Use case",
+      "sublabel": "pure Swift · Domain",
+      "stage": 1,
+      "row": 0
+    },
+    {
+      "id": "sdk",
+      "type": "backend",
+      "label": "SDK adapter",
+      "sublabel": "URLSession · DTO map",
+      "stage": 2,
+      "row": 0
+    },
+    {
+      "id": "grdb-adapter",
+      "type": "backend",
+      "label": "GRDB adapter",
+      "sublabel": "cache · outbox",
+      "stage": 2,
+      "row": 2
+    },
+    {
+      "id": "keychain-adapter",
+      "type": "backend",
+      "label": "Keychain adapter",
+      "sublabel": "TokenProvider",
+      "stage": 2,
+      "row": 4
+    },
+    {
+      "id": "cache",
+      "type": "database",
+      "label": "GRDB (SQLite/WAL)",
+      "sublabel": "cache + outbox table",
+      "stage": 3,
+      "row": 2
+    },
+    {
+      "id": "keychain",
+      "type": "security",
+      "label": "Keychain",
+      "sublabel": "tokens · secrets",
+      "stage": 3,
+      "row": 4
+    },
+    {
+      "id": "api",
+      "type": "external",
+      "label": "Backend API",
+      "sublabel": "server is authoritative",
+      "stage": 4,
+      "row": 0
+    }
+  ],
+  "flows": [
+    {
+      "id": "df1",
+      "from": "screen",
+      "to": "usecase",
+      "label": "intent",
+      "variant": "emphasis"
+    },
+    {
+      "id": "df2",
+      "from": "usecase",
+      "to": "sdk",
+      "label": "read rows",
+      "route": "straight"
+    },
+    {
+      "id": "df3",
+      "from": "usecase",
+      "to": "grdb-adapter",
+      "label": "cache read",
+      "route": "straight"
+    },
+    {
+      "id": "df4",
+      "from": "usecase",
+      "to": "keychain-adapter",
+      "label": "bearer token",
+      "route": "straight"
+    },
+    {
+      "id": "df5",
+      "from": "sdk",
+      "to": "api",
+      "label": "HTTPS",
+      "variant": "emphasis",
+      "route": "straight"
+    },
+    {
+      "id": "df6",
+      "from": "sdk",
+      "to": "cache",
+      "label": "cache the response",
+      "route": "straight"
+    },
+    {
+      "id": "df7",
+      "from": "grdb-adapter",
+      "to": "cache",
+      "label": "GRDB read/write",
+      "route": "straight"
+    },
+    {
+      "id": "df8",
+      "from": "keychain-adapter",
+      "to": "keychain",
+      "label": "Keychain item",
+      "variant": "security",
+      "route": "straight"
+    },
+    {
+      "id": "df9",
+      "from": "cache",
+      "to": "api",
+      "label": "outbox drain",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Where the data actually lands",
+      "items": [
+        "GRDB (SQLite/WAL) holds two things: the cache of what the server sent, and the outbox table of mutations that have not landed yet",
+        "the Keychain holds tokens and secrets with the right accessibility class — a token in UserDefaults is a breach on a shared device",
+        "UserDefaults and @AppStorage carry non-sensitive preferences only, and nothing secret reaches the logs, the bundle or a screenshot-visible screen"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "The path of a read and a write",
+      "items": [
+        "a read goes screen → use case → SDK adapter → server, and the response is cached in GRDB on the way back",
+        "a write goes screen → use case → GRDB adapter → one transaction that writes the local row and the outbox row together",
+        "the outbox drains on reconnect, foreground or background task: the rows go out with their idempotency key, and a successful send deletes the row"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "The server is the source of truth",
+      "items": [
+        "the cache is a mirror, never an authority: the client hides an action it cannot perform, but the server decides what is allowed",
+        "a conflict is resolved by the server and the local pending change comes back rejected visibly",
+        "migrations are code-defined and tested against fixtures of every released version; a destructive fallback that loses data is a review finding"
+      ]
+    }
+  ]
+}

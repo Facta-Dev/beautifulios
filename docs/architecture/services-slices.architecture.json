@@ -1,0 +1,207 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "beautifulios — Packages, Targets & Dependency Walls",
+    "quality_profile": "showcase",
+    "output": "services-slices.architecture.html"
+  },
+  "components": [
+    {
+      "id": "app-target",
+      "type": "frontend",
+      "label": "App target",
+      "sublabel": "composition root · router · DI",
+      "pos": [40, 100],
+      "size": [140, 60]
+    },
+    {
+      "id": "feature-ui",
+      "type": "frontend",
+      "label": "Feature/<slice>/UI",
+      "sublabel": "ViewModel · state · intents",
+      "pos": [300, 100],
+      "size": [160, 60]
+    },
+    {
+      "id": "feature-domain",
+      "type": "backend",
+      "label": "Feature/<slice>/Domain",
+      "sublabel": "entities · rules · ports",
+      "pos": [560, 100],
+      "size": [170, 60]
+    },
+    {
+      "id": "feature-data",
+      "type": "backend",
+      "label": "Feature/<slice>/Data",
+      "sublabel": "SDK · GRDB · Keychain adapters",
+      "pos": [820, 100],
+      "size": [170, 60]
+    },
+    {
+      "id": "kernel",
+      "type": "backend",
+      "label": "Kernel · UICore",
+      "sublabel": "value types · closed status set",
+      "pos": [300, 250],
+      "size": [170, 60]
+    },
+    {
+      "id": "ports",
+      "type": "messagebus",
+      "label": "Ports",
+      "sublabel": "SessionStore · TokenProvider",
+      "pos": [560, 250],
+      "size": [170, 60]
+    },
+    {
+      "id": "adapters",
+      "type": "backend",
+      "label": "Platform adapters",
+      "sublabel": "GRDB · Keychain · APNs · Clock",
+      "pos": [840, 250],
+      "size": [170, 60]
+    },
+    {
+      "id": "variants",
+      "type": "external",
+      "label": "App variants",
+      "sublabel": "one variant = one binary",
+      "pos": [840, 400],
+      "size": [160, 60]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Composition root — the app target",
+      "wraps": [
+        "app-target"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "A feature slice — WALL: no cross-feature imports, no UI in Domain",
+      "wraps": [
+        "feature-ui",
+        "feature-domain",
+        "feature-data"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Shared packages & platform — WALL: no feature code below",
+      "wraps": [
+        "kernel",
+        "ports",
+        "adapters"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "s1",
+      "from": "app-target",
+      "to": "feature-ui",
+      "label": "route + DI"
+    },
+    {
+      "id": "s2",
+      "from": "feature-ui",
+      "to": "feature-domain",
+      "label": "intents ↑"
+    },
+    {
+      "id": "s3",
+      "from": "feature-domain",
+      "to": "feature-data",
+      "label": "ports"
+    },
+    {
+      "id": "s4",
+      "from": "feature-ui",
+      "to": "kernel",
+      "label": "shared types",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "s5",
+      "from": "feature-domain",
+      "to": "ports",
+      "label": "declares",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "s6",
+      "from": "ports",
+      "to": "adapters",
+      "label": "implemented"
+    },
+    {
+      "id": "s7",
+      "from": "feature-data",
+      "to": "adapters",
+      "label": "binds",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "s8",
+      "from": "adapters",
+      "to": "variants",
+      "label": "entitlements",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "s9",
+      "from": "app-target",
+      "to": "adapters",
+      "label": "binds adapters",
+      "fromSide": "bottom",
+      "toSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The package graph is the enforcement",
+      "items": [
+        "a target's `dependencies` list is the complete set of what it may import — a forbidden edge is a compile error, not a review comment",
+        "Domain targets are pure Swift: a SwiftUI import does not compile, and no URLSession, Keychain or FileManager reaches into Domain",
+        "the app target holds no business logic; the composition root builds AppEnvironment and hands each feature its adapters",
+        "feature UI never imports another feature's internals: shared capability is promoted into Kernel/UICore or duplicated through a port"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Ports: the consumer declares, the platform implements",
+      "items": [
+        "InventoryRepository → SDK + GRDB adapter · SessionStore and TokenProvider → Keychain adapter · Navigator → router · Notifier → APNs/local adapter · Clock → system clock (tests use a fake)",
+        "ports speak domain types; no UIView or UIViewController crosses into Domain, and the ViewModel never holds a view",
+        "the Domain declares the port and the Data target implements it — the dependency arrow points at the port, never at the SDK"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "UDF is the only presentation contract",
+      "items": [
+        "one closed State enum, one Intent enum, effects on a single AsyncStream — a switch that misses a case does not compile",
+        "the ViewModel is @MainActor @Observable: `send(_ intent:)` is the entry point and the view only renders the state",
+        "the sealed state carries offline and forbidden, so every screen renders what can actually happen instead of three booleans"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Variants and the floor",
+      "items": [
+        "three app targets share the feature and core packages; the market app never depends on the game engine or its entitlements",
+        "one variant = one app target = one binary; entitlements and usage strings are scoped per variant",
+        "a change that needs an exception re-cuts the layout — a config exception is a contract change, never a lint suppression"
+      ]
+    }
+  ]
+}

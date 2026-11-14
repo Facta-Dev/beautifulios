@@ -1,0 +1,308 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "beautifulios — Sign-in Sequence (Keychain + authoritative server)",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "signin",
+        "label": "Sign in",
+        "focus": [
+          "screen",
+          "viewmodel",
+          "idp",
+          "server",
+          "keychain"
+        ],
+        "note": "Apple, passkey or OIDC + PKCE; the tokens land in the Keychain, never in UserDefaults."
+      },
+      {
+        "id": "call",
+        "label": "Authorized call",
+        "focus": [
+          "viewmodel",
+          "keychain",
+          "server"
+        ],
+        "note": "the bearer token comes from the Keychain on every request; the server decides what is allowed."
+      },
+      {
+        "id": "refresh",
+        "label": "Refresh + revoke",
+        "focus": [
+          "keychain",
+          "server",
+          "viewmodel"
+        ],
+        "note": "a rotated token replaces the stored one; a 403 becomes a rendered state; sign-out wipes the device state."
+      }
+    ],
+    "output": "auth-sequence.sequence.html"
+  },
+  "participants": [
+    {
+      "id": "screen",
+      "type": "frontend",
+      "label": "Screen",
+      "sublabel": "SwiftUI view"
+    },
+    {
+      "id": "viewmodel",
+      "type": "backend",
+      "label": "ViewModel",
+      "sublabel": "@MainActor @Observable"
+    },
+    {
+      "id": "idp",
+      "type": "external",
+      "label": "Identity provider",
+      "sublabel": "Apple · passkey · OIDC"
+    },
+    {
+      "id": "server",
+      "type": "external",
+      "label": "Backend API",
+      "sublabel": "server is authoritative"
+    },
+    {
+      "id": "keychain",
+      "type": "database",
+      "label": "Keychain",
+      "sublabel": "tokens · secrets"
+    }
+  ],
+  "segments": [
+    {
+      "from": 146,
+      "to": 452,
+      "label": "Sign in — code + PKCE verifier"
+    },
+    {
+      "from": 484,
+      "to": 686,
+      "label": "Authorized call"
+    },
+    {
+      "from": 718,
+      "to": 986,
+      "label": "Refresh, reject and sign out"
+    }
+  ],
+  "messages": [
+    {
+      "id": "m1",
+      "from": "screen",
+      "to": "viewmodel",
+      "y": 170,
+      "label": "send(.signIn)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m2",
+      "from": "viewmodel",
+      "to": "idp",
+      "y": 210,
+      "label": "ASWebAuthenticationSession (PKCE)"
+    },
+    {
+      "id": "m3",
+      "from": "idp",
+      "to": "viewmodel",
+      "y": 250,
+      "label": "authorization code + verifier",
+      "variant": "return"
+    },
+    {
+      "id": "m4",
+      "from": "viewmodel",
+      "to": "server",
+      "y": 300,
+      "label": "POST /auth/exchange"
+    },
+    {
+      "id": "m5",
+      "from": "server",
+      "to": "viewmodel",
+      "y": 340,
+      "label": "access + refresh tokens",
+      "variant": "return"
+    },
+    {
+      "id": "m6",
+      "from": "viewmodel",
+      "to": "keychain",
+      "y": 390,
+      "label": "SecItemAdd (accessibility class)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "m7",
+      "from": "viewmodel",
+      "to": "screen",
+      "y": 430,
+      "label": "state = .ready",
+      "variant": "return"
+    },
+    {
+      "id": "m8",
+      "from": "viewmodel",
+      "to": "keychain",
+      "y": 510,
+      "label": "TokenProvider.read"
+    },
+    {
+      "id": "m9",
+      "from": "viewmodel",
+      "to": "server",
+      "y": 550,
+      "label": "GET /inventory (bearer)"
+    },
+    {
+      "id": "m10",
+      "from": "server",
+      "to": "viewmodel",
+      "y": 596,
+      "label": "200 rows",
+      "variant": "return"
+    },
+    {
+      "id": "m11",
+      "from": "viewmodel",
+      "to": "screen",
+      "y": 640,
+      "label": "state = .ready(rows)",
+      "variant": "return"
+    },
+    {
+      "id": "m12",
+      "from": "server",
+      "to": "viewmodel",
+      "y": 750,
+      "label": "401 → refresh (rotated token)",
+      "variant": "security"
+    },
+    {
+      "id": "m13",
+      "from": "viewmodel",
+      "to": "keychain",
+      "y": 790,
+      "label": "replace the stored token"
+    },
+    {
+      "id": "m14",
+      "from": "server",
+      "to": "viewmodel",
+      "y": 840,
+      "label": "403 → not permitted",
+      "variant": "security"
+    },
+    {
+      "id": "m15",
+      "from": "viewmodel",
+      "to": "screen",
+      "y": 880,
+      "label": "state = .forbidden",
+      "variant": "return"
+    },
+    {
+      "id": "m16",
+      "from": "viewmodel",
+      "to": "keychain",
+      "y": 940,
+      "label": "sign out → Keychain + GRDB wiped",
+      "variant": "emphasis"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "viewmodel",
+      "from": 164,
+      "to": 440,
+      "type": "backend"
+    },
+    {
+      "participant": "idp",
+      "from": 204,
+      "to": 258,
+      "type": "external"
+    },
+    {
+      "participant": "server",
+      "from": 294,
+      "to": 348,
+      "type": "external"
+    },
+    {
+      "participant": "keychain",
+      "from": 384,
+      "to": 400,
+      "type": "database"
+    },
+    {
+      "participant": "keychain",
+      "from": 504,
+      "to": 520,
+      "type": "database"
+    },
+    {
+      "participant": "server",
+      "from": 544,
+      "to": 604,
+      "type": "external"
+    },
+    {
+      "participant": "server",
+      "from": 744,
+      "to": 758,
+      "type": "external"
+    },
+    {
+      "participant": "keychain",
+      "from": 784,
+      "to": 800,
+      "type": "database"
+    },
+    {
+      "participant": "server",
+      "from": 834,
+      "to": 848,
+      "type": "external"
+    },
+    {
+      "participant": "keychain",
+      "from": 934,
+      "to": 950,
+      "type": "database"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "One credential store",
+      "items": [
+        "the Keychain item is written once, right after the server exchanges the code — the token never touches UserDefaults, the logs or the bundle",
+        "the Domain declares SessionStore and TokenProvider; the Data target implements them over the Keychain, so no Domain code calls SecItem APIs",
+        "sign out wipes the Keychain and the GRDB user data together"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "The sign-in path",
+      "items": [
+        "Sign in with Apple, passkeys, or OIDC + PKCE in ASWebAuthenticationSession — never an embedded webview login",
+        "the device sends the authorization code and the PKCE verifier; the exchange happens server-side",
+        "the App Attest assertion travels as a risk signal the server may weigh — it never blocks on the client"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Refresh and refusal",
+      "items": [
+        "a 401 triggers a refresh; the rotated token replaces the stored one, so a replayed refresh is refused server-side",
+        "a 403 becomes the rendered .forbidden state — the client hides the action it cannot perform, and the server is the only authority",
+        "ATS stays on and there is no arbitrary-loads exception without a documented reason"
+      ]
+    }
+  ]
+}

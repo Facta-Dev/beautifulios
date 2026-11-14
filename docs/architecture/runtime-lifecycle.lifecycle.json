@@ -1,0 +1,135 @@
+{
+  "schema_version": 3,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "beautifulios — App Runtime Lifecycle",
+    "quality_profile": "showcase",
+    "output": "runtime-lifecycle.lifecycle.html"
+  },
+  "mainPath": [
+    "launch",
+    "compose",
+    "scene",
+    "load",
+    "ready"
+  ],
+  "states": [
+    {
+      "id": "launch",
+      "type": "start",
+      "label": "Launch",
+      "sublabel": "lazy startup",
+      "step": "01",
+      "tag": "entry"
+    },
+    {
+      "id": "compose",
+      "type": "active",
+      "label": "Compose",
+      "sublabel": "AppEnvironment · DI",
+      "step": "02"
+    },
+    {
+      "id": "scene",
+      "type": "active",
+      "label": "Scene",
+      "sublabel": "NavigationStack",
+      "step": "03"
+    },
+    {
+      "id": "load",
+      "type": "decision",
+      "label": "Load",
+      "sublabel": "one closed state",
+      "step": "04",
+      "tag": "gate"
+    },
+    {
+      "id": "ready",
+      "type": "success",
+      "label": "Ready",
+      "sublabel": ".ready(rows)",
+      "step": "05",
+      "tag": "done"
+    },
+    {
+      "id": "offline",
+      "type": "waiting",
+      "label": "Offline",
+      "sublabel": ".offline · cached",
+      "tag": "rendered"
+    },
+    {
+      "id": "forbidden",
+      "type": "waiting",
+      "label": "Forbidden",
+      "sublabel": ".forbidden · 403",
+      "tag": "rendered"
+    },
+    {
+      "id": "error",
+      "type": "failure",
+      "label": "Error",
+      "sublabel": ".error(id)",
+      "tag": "rendered"
+    },
+    {
+      "id": "background",
+      "type": "waiting",
+      "label": "Background",
+      "sublabel": "scenePhase",
+      "tag": "pause"
+    },
+    {
+      "id": "drain",
+      "type": "active",
+      "label": "Drain",
+      "sublabel": "outbox · background task",
+      "tag": "automatic"
+    }
+  ],
+  "transitions": [
+    { "id": "t1", "from": "launch", "to": "compose" },
+    { "id": "t2", "from": "compose", "to": "scene" },
+    { "id": "t3", "from": "scene", "to": "load" },
+    { "id": "t4", "from": "load", "to": "ready" },
+    { "id": "t5", "from": "load", "to": "offline", "label": "no network" },
+    { "id": "t6", "from": "load", "to": "forbidden", "variant": "security", "label": "403" },
+    { "id": "t7", "from": "load", "to": "error", "variant": "dashed", "label": "failed" },
+    { "id": "t8", "from": "ready", "to": "background", "label": "scenePhase" },
+    { "id": "t9", "from": "background", "to": "drain", "variant": "dashed" },
+    { "id": "t10", "from": "drain", "to": "background", "variant": "dashed", "label": "suspended" },
+    { "id": "t11", "from": "drain", "to": "scene", "variant": "emphasis", "label": "foreground" },
+    { "id": "t12", "from": "offline", "to": "drain", "label": "reconnect" },
+    { "id": "t13", "from": "error", "to": "load", "label": "retry" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The boot rail",
+      "items": [
+        "startup is lazy: no heavy work in App.init or didFinishLaunching, static linking, few dynamic frameworks — the launch budget is measured on an A12/A13-class device",
+        "the composition root builds AppEnvironment, the router and the DI graph once; a view never constructs a repository",
+        "the router owns a typed [Route] and the path; a deep link is parsed and validated against an allowlist before it becomes a route, and unknown means not-found"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Every state is rendered",
+      "items": [
+        "the sealed state enum carries loading, empty, ready, offline, forbidden and error — a switch that misses a case does not compile, so a missing state is a build error",
+        "a denied notification permission is a state, not a crash; a deleted resource shows not-found",
+        "the ViewModel is @MainActor @Observable and never holds a UIView, a UIViewController or a view; effects leave on a single AsyncStream"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Suspension, drain and exit",
+      "items": [
+        "on background the app keeps only what it needs; a background task drains the outbox while the app is suspended, and the drain resumes on reconnect or foreground",
+        "a conflict comes back rejected and visible — the local pending change is never silently overwritten",
+        "sign out wipes the Keychain and the GRDB user data together; the OS reclaiming the process is safe only because the state was persisted, and the process may be killed at any moment"
+      ]
+    }
+  ]
+}

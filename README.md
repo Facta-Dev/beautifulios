@@ -147,6 +147,23 @@ The unbreakable rules:
 5. The server is authoritative.
 6. Every state is rendered, including offline and forbidden.
 
+## Architecture diagrams
+
+The repo ships eight [Archify](https://github.com/tt-a1i/archify) diagrams under
+`docs/architecture/`, each a standalone HTML page you can open, explore and share:
+the [index](docs/architecture/README.md) explains every one of them.
+
+| Diagram | What it shows |
+|---|---|
+| [C4 / containers](docs/architecture/c4-containers.html) | The iPhone user → the app target → the feature packages → GRDB, the Keychain and the authoritative backend API |
+| [Services / slices](docs/architecture/services-slices.architecture.html) | The SwiftPM package graph and its dependency walls — no cross-feature imports, no UI framework in Domain |
+| [Auth algorithm](docs/architecture/auth-algorithm.workflow.html) | Sign in with Apple, a passkey or OIDC + PKCE → token exchange → the Keychain → the bearer per request → refresh, refusal and sign-out |
+| [Outbox algorithm](docs/architecture/outbox-algorithm.workflow.html) | The GRDB outbox row, its idempotency key, the three drain triggers and the server-resolved conflict |
+| [Auth sequence](docs/architecture/auth-sequence.sequence.html) | The sign-in and authorized-call chain across the screen, the ViewModel, the identity provider, the API and the Keychain |
+| [Outbox sequence](docs/architecture/outbox-sequence.sequence.html) | The offline mutation, its one transaction, the drain batch and the rejected change coming back visible |
+| [Data / state flow](docs/architecture/database-dataflow.dataflow.html) | Where persistent and state data goes: the cache and outbox in GRDB, the secrets in the Keychain, the truth at the server |
+| [Runtime lifecycle](docs/architecture/runtime-lifecycle.lifecycle.html) | Launch → compose → scene → load → ready, plus the rendered offline/forbidden states and the background drain loop |
+
 ## The lints config
 
 [`lints/.swiftlint.yml`](lints/.swiftlint.yml) and
@@ -200,6 +217,9 @@ tests/                 validator, wording, lints-config and gate tests
 examples/
   minimal/             a SwiftPM package + Swift Testing example
   review-inventory.md  a full worked review
+docs/
+  architecture/        eight Archify diagrams (C4, slices, auth,
+                       outbox, dataflow, lifecycle)
 ```
 
 ## Sources

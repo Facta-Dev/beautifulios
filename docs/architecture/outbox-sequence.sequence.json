@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "beautifulios — Offline Mutation and Outbox Drain",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "offline",
+        "label": "Offline mutation",
+        "focus": [
+          "screen",
+          "viewmodel",
+          "grdb"
+        ],
+        "note": "the mutation and its outbox row commit together, so the app can be killed and lose neither."
+      },
+      {
+        "id": "drain",
+        "label": "Drain",
+        "focus": [
+          "grdb",
+          "server",
+          "viewmodel"
+        ],
+        "note": "reconnect, foreground or background task: pending rows go out with their idempotency key."
+      },
+      {
+        "id": "conflict",
+        "label": "Conflict",
+        "focus": [
+          "server",
+          "viewmodel",
+          "screen"
+        ],
+        "note": "the server resolves the conflict; the local change comes back rejected and visible."
+      }
+    ],
+    "output": "outbox-sequence.sequence.html"
+  },
+  "participants": [
+    {
+      "id": "screen",
+      "type": "frontend",
+      "label": "Screen",
+      "sublabel": "SwiftUI view"
+    },
+    {
+      "id": "viewmodel",
+      "type": "backend",
+      "label": "ViewModel",
+      "sublabel": "@MainActor @Observable"
+    },
+    {
+      "id": "grdb",
+      "type": "database",
+      "label": "GRDB",
+      "sublabel": "SQLite/WAL · cache + outbox"
+    },
+    {
+      "id": "server",
+      "type": "external",
+      "label": "Backend API",
+      "sublabel": "server is authoritative"
+    }
+  ],
+  "segments": [
+    {
+      "from": 146,
+      "to": 452,
+      "label": "Offline — mutation and outbox row in one transaction"
+    },
+    {
+      "from": 484,
+      "to": 754,
+      "label": "Drain — reconnect, foreground or background task"
+    },
+    {
+      "from": 786,
+      "to": 954,
+      "label": "Conflict — the server decides"
+    }
+  ],
+  "messages": [
+    {
+      "id": "q1",
+      "from": "screen",
+      "to": "viewmodel",
+      "y": 170,
+      "label": "send(.archive(id))",
+      "variant": "emphasis"
+    },
+    {
+      "id": "q2",
+      "from": "viewmodel",
+      "to": "grdb",
+      "y": 220,
+      "label": "BEGIN · write row + outbox row (idempotency key)",
+      "variant": "emphasis"
+    },
+    {
+      "id": "q3",
+      "from": "grdb",
+      "to": "viewmodel",
+      "y": 268,
+      "label": "COMMIT",
+      "variant": "return"
+    },
+    {
+      "id": "q4",
+      "from": "viewmodel",
+      "to": "screen",
+      "y": 318,
+      "label": "state = .ready(local) — rollback armed"
+    },
+    {
+      "id": "q5",
+      "from": "viewmodel",
+      "to": "screen",
+      "y": 370,
+      "label": "state = .offline · pending badge"
+    },
+    {
+      "id": "q6",
+      "from": "viewmodel",
+      "to": "grdb",
+      "y": 420,
+      "label": "row stays pending"
+    },
+    {
+      "id": "q7",
+      "from": "grdb",
+      "to": "viewmodel",
+      "y": 500,
+      "label": "drain trigger: reconnect · foreground · background task"
+    },
+    {
+      "id": "q8",
+      "from": "viewmodel",
+      "to": "grdb",
+      "y": 545,
+      "label": "read pending rows (bounded batch)"
+    },
+    {
+      "id": "q9",
+      "from": "grdb",
+      "to": "viewmodel",
+      "y": 590,
+      "label": "rows + idempotency keys",
+      "variant": "return"
+    },
+    {
+      "id": "q10",
+      "from": "viewmodel",
+      "to": "server",
+      "y": 640,
+      "label": "POST /inventory/archive (idempotency key)"
+    },
+    {
+      "id": "q11",
+      "from": "server",
+      "to": "viewmodel",
+      "y": 690,
+      "label": "200 committed",
+      "variant": "return"
+    },
+    {
+      "id": "q12",
+      "from": "viewmodel",
+      "to": "grdb",
+      "y": 735,
+      "label": "delete the outbox row"
+    },
+    {
+      "id": "q13",
+      "from": "server",
+      "to": "viewmodel",
+      "y": 820,
+      "label": "409 conflict — server resolved",
+      "variant": "security"
+    },
+    {
+      "id": "q14",
+      "from": "viewmodel",
+      "to": "grdb",
+      "y": 866,
+      "label": "mark rejected (dead-letter)"
+    },
+    {
+      "id": "q15",
+      "from": "viewmodel",
+      "to": "screen",
+      "y": 916,
+      "label": "state = .error / rejected — visible",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "viewmodel",
+      "from": 164,
+      "to": 440,
+      "type": "backend"
+    },
+    {
+      "participant": "grdb",
+      "from": 214,
+      "to": 278,
+      "type": "database"
+    },
+    {
+      "participant": "grdb",
+      "from": 494,
+      "to": 600,
+      "type": "database"
+    },
+    {
+      "participant": "server",
+      "from": 634,
+      "to": 700,
+      "type": "external"
+    },
+    {
+      "participant": "grdb",
+      "from": 728,
+      "to": 744,
+      "type": "database"
+    },
+    {
+      "participant": "server",
+      "from": 814,
+      "to": 830,
+      "type": "external"
+    },
+    {
+      "participant": "grdb",
+      "from": 860,
+      "to": 876,
+      "type": "database"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "One transaction",
+      "items": [
+        "the mutation and its outbox row commit together in GRDB — the app can be killed between the tap and the network and neither is lost",
+        "the row carries an idempotency key, so a retry after a timeout does not archive twice",
+        "the optimistic local state carries a rollback: if the row never lands, the screen returns to the server's truth"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "What wakes the drain",
+      "items": [
+        "three triggers: the network reconnects, the app returns to the foreground, and a background task runs while the app is suspended",
+        "the drain reads a bounded batch and sends them out of the main actor — a GRDB query on the main actor is a review finding",
+        "a failed row is retried with backoff; once the attempts are exhausted it lands in a dead-letter view a human can act on"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "The server wins",
+      "items": [
+        "a 409 is resolved server-side: the local pending change is rejected visibly, never silently overwritten",
+        "the rejected mutation returns to the screen as a rendered state, so the user sees that their change did not land",
+        "sign out or a tenant switch clears the outbox together with the rest of the user data"
+      ]
+    }
+  ]
+}

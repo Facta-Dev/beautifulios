@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "beautifulios — Container Architecture",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "all",
+        "label": "All",
+        "focus": [
+          "user",
+          "app-target",
+          "feature-ui",
+          "feature-domain",
+          "feature-data",
+          "grdb",
+          "keychain",
+          "backend-api",
+          "apns"
+        ],
+        "note": "The iOS app the contract shapes: a SwiftPM package graph, device-local state and the authoritative server."
+      },
+      {
+        "id": "trust",
+        "label": "Trust",
+        "focus": [
+          "feature-data",
+          "keychain",
+          "backend-api"
+        ],
+        "note": "Tokens live in the Keychain through a Data adapter; the server decides what is allowed."
+      },
+      {
+        "id": "offline",
+        "label": "Offline",
+        "focus": [
+          "feature-data",
+          "grdb",
+          "backend-api"
+        ],
+        "note": "GRDB holds the cache and the outbox; mutations survive until the network is back."
+      },
+      {
+        "id": "push",
+        "label": "Push",
+        "focus": [
+          "backend-api",
+          "apns",
+          "app-target"
+        ],
+        "note": "The server sends a minimal APNs payload; the tap re-enters the app through the deep-link parser."
+      }
+    ],
+    "output": "c4-containers.html"
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "iPhone user",
+      "sublabel": "SwiftUI screen",
+      "pos": [30, 240],
+      "size": [130, 60]
+    },
+    {
+      "id": "app-target",
+      "type": "frontend",
+      "label": "App target",
+      "sublabel": "composition root · router · DI",
+      "pos": [240, 240],
+      "size": [150, 60]
+    },
+    {
+      "id": "feature-ui",
+      "type": "frontend",
+      "label": "Feature/<slice>/UI",
+      "sublabel": "ViewModel · state · intents",
+      "pos": [460, 240],
+      "size": [160, 60]
+    },
+    {
+      "id": "feature-domain",
+      "type": "backend",
+      "label": "Feature/<slice>/Domain",
+      "sublabel": "rules · entities · ports",
+      "pos": [460, 100],
+      "size": [160, 60]
+    },
+    {
+      "id": "feature-data",
+      "type": "backend",
+      "label": "Feature/<slice>/Data",
+      "sublabel": "SDK · GRDB · Keychain adapters",
+      "pos": [690, 240],
+      "size": [150, 60]
+    },
+    {
+      "id": "backend-api",
+      "type": "external",
+      "label": "Backend API",
+      "sublabel": "server is authoritative",
+      "pos": [910, 240],
+      "size": [170, 60]
+    },
+    {
+      "id": "grdb",
+      "type": "database",
+      "label": "GRDB (SQLite/WAL)",
+      "sublabel": "cache · outbox table",
+      "pos": [690, 380],
+      "size": [150, 60]
+    },
+    {
+      "id": "keychain",
+      "type": "security",
+      "label": "Keychain",
+      "sublabel": "tokens · secrets",
+      "pos": [910, 380],
+      "size": [150, 60]
+    },
+    {
+      "id": "apns",
+      "type": "cloud",
+      "label": "APNs",
+      "sublabel": "token push · {v,type,id,route}",
+      "pos": [910, 520],
+      "size": [150, 60]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "The app process — SwiftPM package graph",
+      "wraps": [
+        "app-target",
+        "feature-ui",
+        "feature-domain",
+        "feature-data"
+      ]
+    },
+    {
+      "kind": "region",
+      "label": "Device-local state — the only persistence boundary",
+      "wraps": [
+        "grdb",
+        "keychain"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "k1",
+      "from": "user",
+      "to": "app-target",
+      "label": "tap · deep link",
+      "variant": "emphasis"
+    },
+    {
+      "id": "k2",
+      "from": "app-target",
+      "to": "feature-ui",
+      "label": "route + DI"
+    },
+    {
+      "id": "k3",
+      "from": "feature-ui",
+      "to": "feature-domain",
+      "label": "state down · intents up",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "k4",
+      "from": "feature-domain",
+      "to": "feature-data",
+      "label": "port → adapter",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "k5",
+      "from": "feature-data",
+      "to": "grdb",
+      "label": "GRDB read/write",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "k6",
+      "from": "feature-data",
+      "to": "keychain",
+      "label": "Keychain item",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "k7",
+      "from": "feature-data",
+      "to": "backend-api",
+      "label": "HTTPS · ATS on",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "left"
+    },
+    {
+      "id": "k8",
+      "from": "backend-api",
+      "to": "apns",
+      "label": "push · .p8 token",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "right",
+      "via": [
+        [1120, 270],
+        [1120, 550]
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The contract this repo ships",
+      "items": [
+        "ios-best-practices loads on every iOS edit and carries the architecture digest (references/ios-architecture.md)",
+        "ios-review writes a prioritized report where every finding cites the rule it breaks and shows the smallest fix",
+        "ios-port ports a React Native, web or UIKit screen to SwiftUI-as-code, tests first, with a PORTING.md",
+        "lints/.swiftlint.yml + lints/.swift-format are the machine-checkable half: force unwrapping, implicitly unwrapped optionals and untyped errors are opt-in rules, and scripts/check-lints.sh proves the clean control stays quiet while the violation harness fires"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "The five targets",
+      "items": [
+        "Domain is pure Swift: a SwiftUI import does not compile, and the target dependency list is the whole allow-list",
+        "Data owns the SDK, GRDB and Keychain adapters and never imports SwiftUI or a feature UI",
+        "UI owns the ViewModel, one closed state enum, intents, effects and the views — never another feature's internals",
+        "the app target is the composition root (AppEnvironment), the router and the DI wiring; it holds no business logic"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "State and secrets",
+      "items": [
+        "GRDB (SQLite/WAL) holds the cache and the outbox table; migrations are code-defined and tested against fixtures of every released version",
+        "the Keychain holds tokens and secrets with the right accessibility class — a token in UserDefaults is a breach on a shared device",
+        "UserDefaults carries non-sensitive preferences only, and the outbox is drained on reconnect, foreground and background task"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "The server is authoritative",
+      "items": [
+        "the client hides an action it cannot perform; it never decides access — authorization is server-side, and a route guard is not access control",
+        "App Attest is a server-side risk signal, never a client-side block; ATS stays on and pinning needs a rotation plan",
+        "push is a channel, not a data path: the payload is {v, type, id, route}, the tap goes through the same deep-link parser, and the app fetches the resource"
+      ]
+    }
+  ]
+}

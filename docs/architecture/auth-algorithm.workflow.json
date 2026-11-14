@@ -1,0 +1,144 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "beautifulios — Trust Algorithm (Keychain + authoritative server)",
+    "quality_profile": "showcase",
+    "output": "auth-algorithm.workflow.html"
+  },
+  "lanes": [
+    { "id": "screen", "label": "Screen" },
+    { "id": "viewmodel", "label": "ViewModel" },
+    { "id": "ports", "label": "Ports" },
+    { "id": "keychain", "label": "Keychain" },
+    { "id": "server", "label": "Server" }
+  ],
+  "phases": [
+    { "id": "signin", "label": "Sign in", "fromCol": 0, "toCol": 1 },
+    { "id": "session", "label": "Session", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "refresh", "label": "Refresh + revoke", "fromCol": 4, "toCol": 5 }
+  ],
+  "mainPath": [
+    "intent",
+    "challenge",
+    "callback",
+    "exchange",
+    "store",
+    "use",
+    "session"
+  ],
+  "nodes": [
+    {
+      "id": "intent",
+      "lane": "screen",
+      "col": 0,
+      "type": "frontend",
+      "label": "Sign in tap",
+      "sublabel": "Apple · passkey · OIDC"
+    },
+    {
+      "id": "challenge",
+      "lane": "viewmodel",
+      "col": 1,
+      "type": "backend",
+      "label": "SessionStore.signIn",
+      "sublabel": "ASWebAuthenticationSession"
+    },
+    {
+      "id": "callback",
+      "lane": "server",
+      "col": 2,
+      "type": "external",
+      "label": "IdP callback",
+      "sublabel": "code + PKCE verifier"
+    },
+    {
+      "id": "exchange",
+      "lane": "server",
+      "col": 3,
+      "type": "external",
+      "label": "Token exchange",
+      "sublabel": "access + refresh"
+    },
+    {
+      "id": "store",
+      "lane": "keychain",
+      "col": 3,
+      "type": "database",
+      "label": "Keychain item",
+      "sublabel": "kSecAttrAccessible"
+    },
+    {
+      "id": "use",
+      "lane": "ports",
+      "col": 4,
+      "type": "security",
+      "label": "TokenProvider",
+      "sublabel": "bearer per request"
+    },
+    {
+      "id": "session",
+      "lane": "server",
+      "col": 4,
+      "type": "external",
+      "label": "Session endpoint",
+      "sublabel": "refresh · revoke"
+    },
+    {
+      "id": "denied",
+      "lane": "screen",
+      "col": 5,
+      "type": "security",
+      "label": "Forbidden state",
+      "sublabel": "the server decided"
+    },
+    {
+      "id": "revoke",
+      "lane": "keychain",
+      "col": 5,
+      "type": "security",
+      "label": "Sign out",
+      "sublabel": "Keychain + GRDB wiped"
+    }
+  ],
+  "edges": [
+    { "id": "a1", "from": "intent", "to": "challenge" },
+    { "id": "a2", "from": "challenge", "to": "callback", "label": "open session" },
+    { "id": "a3", "from": "callback", "to": "exchange", "label": "code + verifier" },
+    { "id": "a4", "from": "exchange", "to": "store", "label": "write tokens" },
+    { "id": "a5", "from": "store", "to": "use", "label": "read" },
+    { "id": "a6", "from": "use", "to": "session", "label": "401 → refresh" },
+    { "id": "a7", "from": "session", "to": "denied", "label": "403 → state" },
+    { "id": "a8", "from": "session", "to": "revoke", "label": "sign out" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Where the credential lives",
+      "items": [
+        "tokens and secrets live in the Keychain with the right accessibility class — a token in UserDefaults is a breach on a shared device, and nothing secret reaches the logs, the bundle or a screenshot-visible screen",
+        "the Domain declares the ports (SessionStore, TokenProvider); the Data target implements them over the Keychain, so no Domain code touches SecItem APIs",
+        "sign out clears the Keychain and the GRDB user data — sign-out and tenant switch leave nothing behind"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "How the session starts",
+      "items": [
+        "Sign in with Apple, passkeys, or OIDC + PKCE in ASWebAuthenticationSession — never an embedded webview login",
+        "the callback carries the authorization code and the PKCE verifier; the exchange happens at the server, not on the device",
+        "the App Attest assertion is a server-side risk signal, never a client-side block — the client cannot decide that a device is honest",
+        "a refresh rotates the stored token: the new one replaces the old Keychain item, and a replayed refresh is refused server-side"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "The server is authoritative",
+      "items": [
+        "every state-changing call is authorized server-side; a client-side route guard is not access control, and the client only hides an action it cannot perform",
+        "a 403 is a rendered state (.forbidden), not a crash and not a silent retry",
+        "ATS stays on; no arbitrary-loads exception without a documented reason, and no pinning without a rotation plan"
+      ]
+    }
+  ]
+}

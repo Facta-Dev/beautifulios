@@ -1,0 +1,135 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "beautifulios — Offline Outbox (GRDB) and its Drain Triggers",
+    "quality_profile": "showcase",
+    "output": "outbox-algorithm.workflow.html"
+  },
+  "lanes": [
+    { "id": "screen", "label": "Screen" },
+    { "id": "viewmodel", "label": "ViewModel" },
+    { "id": "use", "label": "Use case" },
+    { "id": "outbox", "label": "GRDB outbox" },
+    { "id": "server", "label": "Server" }
+  ],
+  "phases": [
+    { "id": "intent", "label": "Offline mutation", "fromCol": 0, "toCol": 1 },
+    { "id": "persist", "label": "Persist", "fromCol": 2, "toCol": 3, "variant": "emphasis" },
+    { "id": "drain", "label": "Drain + settle", "fromCol": 4, "toCol": 5 }
+  ],
+  "mainPath": [
+    "tap",
+    "intent",
+    "enqueue",
+    "row",
+    "drain",
+    "commit"
+  ],
+  "nodes": [
+    {
+      "id": "tap",
+      "lane": "screen",
+      "col": 0,
+      "type": "frontend",
+      "label": "Archive tap",
+      "sublabel": "Button, not a gesture"
+    },
+    {
+      "id": "intent",
+      "lane": "viewmodel",
+      "col": 1,
+      "type": "backend",
+      "label": "send(.archive)",
+      "sublabel": "one closed intent"
+    },
+    {
+      "id": "enqueue",
+      "lane": "use",
+      "col": 2,
+      "type": "backend",
+      "label": "Use case",
+      "sublabel": "mutation + outbox row"
+    },
+    {
+      "id": "row",
+      "lane": "outbox",
+      "col": 3,
+      "type": "database",
+      "label": "outbox row",
+      "sublabel": "idempotency key"
+    },
+    {
+      "id": "drain",
+      "lane": "outbox",
+      "col": 4,
+      "type": "backend",
+      "label": "Drain trigger",
+      "sublabel": "reconnect · foreground · background"
+    },
+    {
+      "id": "commit",
+      "lane": "server",
+      "col": 5,
+      "type": "external",
+      "label": "Server commits",
+      "sublabel": "authoritative"
+    },
+    {
+      "id": "reject",
+      "lane": "viewmodel",
+      "col": 5,
+      "type": "security",
+      "label": "Rejected state",
+      "sublabel": "visible, never silent"
+    },
+    {
+      "id": "dead",
+      "lane": "outbox",
+      "col": 5,
+      "type": "security",
+      "label": "Dead letter",
+      "sublabel": "manual retry"
+    }
+  ],
+  "edges": [
+    { "id": "o1", "from": "tap", "to": "intent" },
+    { "id": "o2", "from": "intent", "to": "enqueue" },
+    { "id": "o3", "from": "enqueue", "to": "row", "label": "same transaction", "variant": "emphasis" },
+    { "id": "o4", "from": "row", "to": "drain", "label": "pending rows" },
+    { "id": "o5", "from": "drain", "to": "commit", "label": "POST + idempotency key" },
+    { "id": "o6", "from": "commit", "to": "reject", "label": "conflict → reject", "variant": "security" },
+    { "id": "o7", "from": "commit", "to": "dead", "label": "retry exhausted", "variant": "dashed" }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "The outbox is a table, not a hope",
+      "items": [
+        "the mutation and its outbox row are written in one GRDB transaction — the app can be killed between them and neither is lost",
+        "each row carries an idempotency key, so a retry after a timeout does not archive twice",
+        "the row is persisted before the UI claims success: a fire-and-forget mutation with no rollback is a review finding",
+        "GRDB runs in WAL; migrations are code-defined and tested against fixtures of every released version"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "What drains it",
+      "items": [
+        "three triggers: the network reconnects, the app returns to the foreground, and a background task runs while the app is suspended",
+        "the drain is bounded — a batch of pending rows goes out per pass, and the rest stay queued",
+        "a failed row is retried with backoff and, once the attempts are exhausted, lands in a dead-letter view a human can act on",
+        "the drain runs off the main actor; a GRDB query on the main actor is a review finding"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "The server resolves conflicts",
+      "items": [
+        "a conflict is resolved by the server: the local pending change is rejected visibly, never silently overwritten",
+        "the rejected mutation returns to the screen as a rendered state so the user sees that their change did not land",
+        "sign out or a tenant switch clears the outbox with the rest of the user data"
+      ]
+    }
+  ]
+}
