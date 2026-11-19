@@ -38,6 +38,13 @@ instruction-budget tooling. The shared contracts (`PLAYBOOK_URLS.md`,
 `PLAYBOOK_TESTS.md`, `PLAYBOOK_SECURITY.md`, `PLAYBOOK_AUDIT.md`,
 `PLAYBOOK_CLAUDE_CODE.md`) apply across the series.
 
+This repository is one of the twelve implementations of the single playbook
+set (the **1:n** series: `ai-coding-playbook` is the 1, the Beautiful
+repositories are the n). It implements `PLAYBOOK_MOBILE_IOS_SWIFT.md`; the playbook governs this
+repository, and implementation gaps are reported upstream. The rule is in
+[`PLAYBOOK_MASTER_PART3.md` §12](https://github.com/Facta-Dev/ai-coding-playbook/blob/main/PLAYBOOK_MASTER_PART3.md).
+
+
 ## Why
 
 iOS rewards discipline and punishes shortcuts, especially on older iPhones:
