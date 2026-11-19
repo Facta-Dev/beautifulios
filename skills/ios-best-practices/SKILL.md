@@ -15,6 +15,11 @@ description: >-
 
 # iOS best practices
 
+> Playbook set: start with [`PLAYBOOK_MASTER.md`](https://github.com/Facta-Dev/ai-coding-playbook/blob/main/PLAYBOOK_MASTER.md) —
+> the catalog, precedence and cross-playbook invariants — then
+> [`PLAYBOOK_MOBILE_IOS_SWIFT.md`](https://github.com/Facta-Dev/ai-coding-playbook/blob/main/PLAYBOOK_MOBILE_IOS_SWIFT.md). This skill is the runnable companion of that
+> contract.
+
 Distilled from Apple's SwiftUI and concurrency documentation, the App Store
 guidance, and the facta iOS handbook (`PLAYBOOK_MOBILE_IOS_SWIFT.md`). The
 digests live in `references/`; where they disagree, this file says which to
