@@ -1,0 +1,1132 @@
+{
+  "communities": {
+    "0": [
+      "tests_test_check_skill",
+      "tests_test_check_skill_add_portable_plugin",
+      "tests_test_check_skill_build_valid_repo",
+      "tests_test_check_skill_checkskilltests",
+      "tests_test_check_skill_checkskilltests_assert_has_error",
+      "tests_test_check_skill_checkskilltests_run_root",
+      "tests_test_check_skill_checkskilltests_setupclass",
+      "tests_test_check_skill_checkskilltests_test_bad_name",
+      "tests_test_check_skill_checkskilltests_test_broken_link",
+      "tests_test_check_skill_checkskilltests_test_broken_references_mention",
+      "tests_test_check_skill_checkskilltests_test_case_name_must_match_folder",
+      "tests_test_check_skill_checkskilltests_test_cli_help",
+      "tests_test_check_skill_checkskilltests_test_empty_grader_body",
+      "tests_test_check_skill_checkskilltests_test_gap_in_grader_numbers",
+      "tests_test_check_skill_checkskilltests_test_invalid_semver",
+      "tests_test_check_skill_checkskilltests_test_long_description",
+      "tests_test_check_skill_checkskilltests_test_long_skill_body_warns",
+      "tests_test_check_skill_checkskilltests_test_markdown_link_covers_reference",
+      "tests_test_check_skill_checkskilltests_test_missing_frontmatter_key",
+      "tests_test_check_skill_checkskilltests_test_missing_grader_frontmatter_key",
+      "tests_test_check_skill_checkskilltests_test_missing_skill_description",
+      "tests_test_check_skill_checkskilltests_test_name_must_match_folder",
+      "tests_test_check_skill_checkskilltests_test_orphan_reference",
+      "tests_test_check_skill_checkskilltests_test_output_format_and_json_flag",
+      "tests_test_check_skill_checkskilltests_test_place_files_existing_target_ok",
+      "tests_test_check_skill_checkskilltests_test_place_files_missing_target",
+      "tests_test_check_skill_checkskilltests_test_plugin_name_mismatch",
+      "tests_test_check_skill_checkskilltests_test_portable_display_name_too_long",
+      "tests_test_check_skill_checkskilltests_test_portable_http_url_rejected",
+      "tests_test_check_skill_checkskilltests_test_portable_icon_must_be_square",
+      "tests_test_check_skill_checkskilltests_test_portable_missing_icon",
+      "tests_test_check_skill_checkskilltests_test_portable_too_many_prompts",
+      "tests_test_check_skill_checkskilltests_test_portable_unknown_top_level_key",
+      "tests_test_check_skill_checkskilltests_test_portable_version_must_match",
+      "tests_test_check_skill_checkskilltests_test_real_repo_json_ok",
+      "tests_test_check_skill_checkskilltests_test_real_repo_passes",
+      "tests_test_check_skill_checkskilltests_test_unknown_frontmatter_key",
+      "tests_test_check_skill_checkskilltests_test_valid_fixture_repo_passes",
+      "tests_test_check_skill_checkskilltests_test_valid_portable_plugin_passes",
+      "tests_test_check_skill_checkskilltests_test_version_mismatch",
+      "tests_test_check_skill_error_messages",
+      "tests_test_check_skill_formatted",
+      "tests_test_check_skill_load_checker",
+      "tests_test_check_skill_messages",
+      "tests_test_check_skill_png_header",
+      "tests_test_check_skill_portable_with",
+      "tests_test_check_skill_rationale_142",
+      "tests_test_check_skill_write"
+    ],
+    "1": [
+      "scripts_check_skill",
+      "scripts_check_skill_check_repo",
+      "scripts_check_skill_checker",
+      "scripts_check_skill_checker_add",
+      "scripts_check_skill_checker_check",
+      "scripts_check_skill_checker_check_changelog",
+      "scripts_check_skill_checker_check_doc_links",
+      "scripts_check_skill_checker_check_eval_case",
+      "scripts_check_skill_checker_check_evals",
+      "scripts_check_skill_checker_check_grader_file",
+      "scripts_check_skill_checker_check_graders",
+      "scripts_check_skill_checker_check_openai_icon",
+      "scripts_check_skill_checker_check_openai_interface",
+      "scripts_check_skill_checker_check_orphans",
+      "scripts_check_skill_checker_check_place_files",
+      "scripts_check_skill_checker_check_plugin_files",
+      "scripts_check_skill_checker_check_portable_plugin",
+      "scripts_check_skill_checker_check_relative_url",
+      "scripts_check_skill_checker_check_skill",
+      "scripts_check_skill_checker_init",
+      "scripts_check_skill_checker_load_frontmatter",
+      "scripts_check_skill_checker_load_json",
+      "scripts_check_skill_checker_load_yaml",
+      "scripts_check_skill_checker_loc",
+      "scripts_check_skill_checker_read",
+      "scripts_check_skill_checker_reference_hit",
+      "scripts_check_skill_checker_skill_dirs",
+      "scripts_check_skill_fold_block",
+      "scripts_check_skill_format_problem",
+      "scripts_check_skill_is_relative",
+      "scripts_check_skill_json_key_line",
+      "scripts_check_skill_main",
+      "scripts_check_skill_normalize_url",
+      "scripts_check_skill_png_size",
+      "scripts_check_skill_problem",
+      "scripts_check_skill_problems_to_json",
+      "scripts_check_skill_py_path",
+      "scripts_check_skill_rationale_1125",
+      "scripts_check_skill_rel",
+      "scripts_check_skill_split_frontmatter",
+      "scripts_check_skill_strip_comment",
+      "scripts_check_skill_summary_line"
+    ],
+    "2": [
+      "equatable",
+      "examples_minimal_sources_minimal_inventorymodel",
+      "examples_minimal_sources_minimal_inventorymodel_inventorymodel",
+      "examples_minimal_sources_minimal_inventorymodel_inventorymodel_fail",
+      "examples_minimal_sources_minimal_inventorymodel_inventorymodel_init",
+      "examples_minimal_sources_minimal_inventorymodel_inventorymodel_load",
+      "examples_minimal_sources_minimal_inventorymodel_inventorystate",
+      "examples_minimal_sources_minimal_inventorymodel_inventorystate_empty",
+      "examples_minimal_sources_minimal_inventorymodel_inventorystate_error",
+      "examples_minimal_sources_minimal_inventorymodel_inventorystate_loading",
+      "examples_minimal_sources_minimal_inventorymodel_inventorystate_ready",
+      "examples_minimal_sources_minimal_inventorymodel_swift_string",
+      "examples_minimal_tests_minimaltests_inventorymodeltests",
+      "examples_minimal_tests_minimaltests_inventorymodeltests_inventorymodeltests",
+      "examples_minimal_tests_minimaltests_inventorymodeltests_inventorymodeltests_emptylistbecomesemptystate",
+      "examples_minimal_tests_minimaltests_inventorymodeltests_inventorymodeltests_failurekeepsthecorrelationid",
+      "examples_minimal_tests_minimaltests_inventorymodeltests_inventorymodeltests_rowsbecomereadystate",
+      "foundation",
+      "lints_check_clean",
+      "lints_check_clean_counter",
+      "lints_check_clean_describe",
+      "lints_check_clean_increment",
+      "lints_check_clean_swift_int",
+      "lints_check_clean_swift_string",
+      "lints_check_violations",
+      "lints_check_violations_forcetried",
+      "lints_check_violations_forceunwrapped",
+      "lints_check_violations_longfunction",
+      "lints_check_violations_pending",
+      "lints_check_violations_swift_int",
+      "lints_check_violations_swift_string",
+      "minimal",
+      "observation",
+      "sendable",
+      "testing",
+      "void"
+    ],
+    "3": [
+      "changelog",
+      "changelog_added",
+      "changelog_changelog",
+      "changelog_unreleased",
+      "contributing",
+      "contributing_contributing",
+      "contributing_good_first_contributions",
+      "contributing_license",
+      "contributing_making_a_change",
+      "contributing_style",
+      "contributing_the_one_rule_every_rule_needs_a_source",
+      "docs_architecture_readme",
+      "docs_architecture_readme_beautifulios_architecture_diagrams",
+      "lints_readme",
+      "lints_readme_beautiful_ios_lints",
+      "lints_readme_running_it",
+      "lints_readme_the_check_project",
+      "privacy",
+      "privacy_privacy_policy",
+      "readme",
+      "skills_ios_best_practices_references_ios_architecture",
+      "skills_ios_best_practices_references_ios_architecture_10_the_enforcement_map",
+      "skills_ios_best_practices_references_ios_architecture_1_layers_and_targets",
+      "skills_ios_best_practices_references_ios_architecture_2_ports",
+      "skills_ios_best_practices_references_ios_architecture_3_udf",
+      "skills_ios_best_practices_references_ios_architecture_4_variants",
+      "skills_ios_best_practices_references_ios_architecture_5_concurrency",
+      "skills_ios_best_practices_references_ios_architecture_6_data_and_offline",
+      "skills_ios_best_practices_references_ios_architecture_7_navigation",
+      "skills_ios_best_practices_references_ios_architecture_8_security",
+      "skills_ios_best_practices_references_ios_architecture_9_testing",
+      "skills_ios_best_practices_references_ios_architecture_ios_architecture_contract"
+    ],
+    "4": [
+      "plugin",
+      "plugin_author",
+      "plugin_author_name",
+      "plugin_author_url",
+      "plugin_com_openai_interface",
+      "plugin_com_openai_publication",
+      "plugin_description",
+      "plugin_extensions",
+      "plugin_extensions_com_openai",
+      "plugin_homepage",
+      "plugin_interface_brandcolor",
+      "plugin_interface_capabilities",
+      "plugin_interface_category",
+      "plugin_interface_composericon",
+      "plugin_interface_defaultprompt",
+      "plugin_interface_developername",
+      "plugin_interface_displayname",
+      "plugin_interface_logo",
+      "plugin_interface_longdescription",
+      "plugin_interface_privacypolicyurl",
+      "plugin_interface_shortdescription",
+      "plugin_interface_supporturl",
+      "plugin_interface_websiteurl",
+      "plugin_keywords",
+      "plugin_license",
+      "plugin_name",
+      "plugin_publication_release_notes",
+      "plugin_repository",
+      "plugin_schema",
+      "plugin_version"
+    ],
+    "5": [
+      "claude_skills_graphify_skill",
+      "claude_skills_graphify_skill_for_graphify_add_and_watch",
+      "claude_skills_graphify_skill_for_graphify_query",
+      "claude_skills_graphify_skill_for_the_commit_hook_and_native_claude_md_integration",
+      "claude_skills_graphify_skill_for_update_and_cluster_only",
+      "claude_skills_graphify_skill_graphify",
+      "claude_skills_graphify_skill_honesty_rules",
+      "claude_skills_graphify_skill_interpreter_guard_for_subcommands",
+      "claude_skills_graphify_skill_part_a_structural_extraction_for_code_files",
+      "claude_skills_graphify_skill_part_b_semantic_extraction_parallel_subagents",
+      "claude_skills_graphify_skill_part_c_merge_ast_semantic_into_final_extraction",
+      "claude_skills_graphify_skill_step_0_github_repos_and_multi_path_merge_only_if_a_url_or_several_paths",
+      "claude_skills_graphify_skill_step_1_ensure_graphify_is_installed",
+      "claude_skills_graphify_skill_step_2_5_video_and_audio_only_if_video_files_detected",
+      "claude_skills_graphify_skill_step_2_detect_files",
+      "claude_skills_graphify_skill_step_3_extract_entities_and_relationships",
+      "claude_skills_graphify_skill_step_4_5_graph_health_check_read_only_integrity_gate",
+      "claude_skills_graphify_skill_step_4_build_graph_cluster_analyze_generate_outputs",
+      "claude_skills_graphify_skill_step_5_label_communities",
+      "claude_skills_graphify_skill_step_6_generate_obsidian_vault_opt_in_html",
+      "claude_skills_graphify_skill_step_9_save_manifest_update_cost_tracker_clean_up_and_report",
+      "claude_skills_graphify_skill_steps_6b_8_wiki_neo4j_falkordb_svg_graphml_mcp_benchmark_only_on_their_flags",
+      "claude_skills_graphify_skill_usage",
+      "claude_skills_graphify_skill_what_graphify_is_for",
+      "claude_skills_graphify_skill_what_you_must_do_when_invoked"
+    ],
+    "6": [
+      "any",
+      "exception",
+      "scripts_check_skill_parse_quoted",
+      "scripts_check_skill_parse_yaml",
+      "scripts_check_skill_rationale_101",
+      "scripts_check_skill_split_flow",
+      "scripts_check_skill_yamlerror",
+      "scripts_check_skill_yamlerror_init",
+      "scripts_check_skill_yamlparser",
+      "scripts_check_skill_yamlparser_indent",
+      "scripts_check_skill_yamlparser_init",
+      "scripts_check_skill_yamlparser_is_empty",
+      "scripts_check_skill_yamlparser_parse",
+      "scripts_check_skill_yamlparser_parse_block",
+      "scripts_check_skill_yamlparser_parse_flow_map",
+      "scripts_check_skill_yamlparser_parse_flow_seq",
+      "scripts_check_skill_yamlparser_parse_map",
+      "scripts_check_skill_yamlparser_parse_scalar",
+      "scripts_check_skill_yamlparser_parse_seq",
+      "scripts_check_skill_yamlparser_parse_value",
+      "scripts_check_skill_yamlparser_skip_empty",
+      "scripts_check_skill_yamlparser_split_key"
+    ],
+    "7": [
+      "readme_a_worked_example",
+      "readme_agent_kit_claude_code",
+      "readme_any_agent",
+      "readme_architecture_diagrams",
+      "readme_beautiful_ios",
+      "readme_claude_code",
+      "readme_contributing",
+      "readme_install",
+      "readme_license",
+      "readme_openai_codex_and_chatgpt",
+      "readme_repository_layout",
+      "readme_siblings",
+      "readme_sources",
+      "readme_the_architecture_contract",
+      "readme_the_lints_config",
+      "readme_the_playbooks",
+      "readme_what_it_does_not_do",
+      "readme_why"
+    ],
+    "8": [
+      "skills_ios_best_practices_skill",
+      "skills_ios_best_practices_skill_10_push_notifications_apns",
+      "skills_ios_best_practices_skill_11_security",
+      "skills_ios_best_practices_skill_12_performance",
+      "skills_ios_best_practices_skill_13_testing",
+      "skills_ios_best_practices_skill_14_cross_skill_contract",
+      "skills_ios_best_practices_skill_1_mindset",
+      "skills_ios_best_practices_skill_2_before_you_hand_back_code",
+      "skills_ios_best_practices_skill_3_platform_facts",
+      "skills_ios_best_practices_skill_4_architecture_swift_packages_vertical_slices_udf",
+      "skills_ios_best_practices_skill_5_swift_6_concurrency",
+      "skills_ios_best_practices_skill_6_udf_with_observation",
+      "skills_ios_best_practices_skill_7_navigation_and_deep_links",
+      "skills_ios_best_practices_skill_8_data_offline_and_the_outbox",
+      "skills_ios_best_practices_skill_9_swiftui",
+      "skills_ios_best_practices_skill_ios_best_practices",
+      "skills_ios_best_practices_skill_sources"
+    ],
+    "9": [
+      "skills_ios_review_skill",
+      "skills_ios_review_skill_1_report_shape",
+      "skills_ios_review_skill_2_categories_in_ranking_order",
+      "skills_ios_review_skill_3_waived_gates",
+      "skills_ios_review_skill_4_how_to_review",
+      "skills_ios_review_skill_5_worked_example",
+      "skills_ios_review_skill_6_cross_skill_contract",
+      "skills_ios_review_skill_architecture_contracts_always_must_fix_ranked_first",
+      "skills_ios_review_skill_data_offline_and_outbox",
+      "skills_ios_review_skill_ios_review",
+      "skills_ios_review_skill_navigation_and_deep_links",
+      "skills_ios_review_skill_performance",
+      "skills_ios_review_skill_push",
+      "skills_ios_review_skill_security",
+      "skills_ios_review_skill_swift_6_concurrency_and_isolation",
+      "skills_ios_review_skill_tests",
+      "skills_ios_review_skill_udf_and_swiftui"
+    ],
+    "10": [
+      "skills_ios_best_practices_references_ios",
+      "skills_ios_best_practices_references_ios_10_testing",
+      "skills_ios_best_practices_references_ios_1_toolchain_and_policy",
+      "skills_ios_best_practices_references_ios_2_ui",
+      "skills_ios_best_practices_references_ios_3_concurrency",
+      "skills_ios_best_practices_references_ios_4_data",
+      "skills_ios_best_practices_references_ios_5_push",
+      "skills_ios_best_practices_references_ios_6_navigation_and_deep_links",
+      "skills_ios_best_practices_references_ios_7_device_tiers",
+      "skills_ios_best_practices_references_ios_8_performance",
+      "skills_ios_best_practices_references_ios_9_security",
+      "skills_ios_best_practices_references_ios_ios_platform_digest"
+    ],
+    "11": [
+      "tests_test_skill_wording",
+      "tests_test_skill_wording_bestpractices",
+      "tests_test_skill_wording_bestpractices_test_names_the_layer_walls",
+      "tests_test_skill_wording_bestpractices_test_points_at_review_as_the_critic",
+      "tests_test_skill_wording_bestpractices_test_silencing_prohibition_names_the_tokens",
+      "tests_test_skill_wording_bestpractices_test_unbreakable_clause_present",
+      "tests_test_skill_wording_bp_body",
+      "tests_test_skill_wording_reviewskill",
+      "tests_test_skill_wording_reviewskill_test_architecture_category_ranks_first_as_must_fix",
+      "tests_test_skill_wording_reviewskill_test_waiver_detection_clause",
+      "tests_test_skill_wording_rv_body"
+    ],
+    "12": [
+      "examples_review_inventory",
+      "examples_review_inventory_a_worked_review_the_inventory_screen",
+      "examples_review_inventory_must_fix",
+      "examples_review_inventory_should_fix",
+      "examples_review_inventory_the_fixed_module",
+      "examples_review_inventory_the_module_under_review",
+      "examples_review_inventory_the_report",
+      "examples_review_inventory_verdict",
+      "examples_review_inventory_waived_gates",
+      "examples_review_inventory_what_changed_and_why_it_matters"
+    ],
+    "13": [
+      "skills_ios_best_practices_references_swift_strict",
+      "skills_ios_best_practices_references_swift_strict_1_the_subset",
+      "skills_ios_best_practices_references_swift_strict_2_sealed_state",
+      "skills_ios_best_practices_references_swift_strict_3_isolation",
+      "skills_ios_best_practices_references_swift_strict_4_errors",
+      "skills_ios_best_practices_references_swift_strict_5_foundation_discipline",
+      "skills_ios_best_practices_references_swift_strict_6_swiftui_type_rules",
+      "skills_ios_best_practices_references_swift_strict_7_swiftlint_and_swift_format",
+      "skills_ios_best_practices_references_swift_strict_8_review_questions",
+      "skills_ios_best_practices_references_swift_strict_swift_strict_for_ios"
+    ],
+    "14": [
+      "skills_ios_best_practices_references_swiftui_patterns",
+      "skills_ios_best_practices_references_swiftui_patterns_1_the_udf_viewmodel",
+      "skills_ios_best_practices_references_swiftui_patterns_2_state_ownership",
+      "skills_ios_best_practices_references_swiftui_patterns_3_navigation",
+      "skills_ios_best_practices_references_swiftui_patterns_4_lists_and_images",
+      "skills_ios_best_practices_references_swiftui_patterns_5_effects_and_lifecycle",
+      "skills_ios_best_practices_references_swiftui_patterns_6_accessibility",
+      "skills_ios_best_practices_references_swiftui_patterns_7_localization",
+      "skills_ios_best_practices_references_swiftui_patterns_8_testing",
+      "skills_ios_best_practices_references_swiftui_patterns_swiftui_patterns"
+    ],
+    "15": [
+      "claude_skills_graphify_references_exports",
+      "claude_skills_graphify_references_exports_graphify_reference_extra_exports_and_benchmark",
+      "claude_skills_graphify_references_exports_step_6b_wiki_only_if_wiki_flag",
+      "claude_skills_graphify_references_exports_step_7_neo4j_export_only_if_neo4j_or_neo4j_push_flag",
+      "claude_skills_graphify_references_exports_step_7a_falkordb_export_only_if_falkordb_or_falkordb_push_flag",
+      "claude_skills_graphify_references_exports_step_7b_svg_export_only_if_svg_flag",
+      "claude_skills_graphify_references_exports_step_7c_graphml_export_only_if_graphml_flag",
+      "claude_skills_graphify_references_exports_step_7d_mcp_server_only_if_mcp_flag",
+      "claude_skills_graphify_references_exports_step_8_token_reduction_benchmark_only_if_total_words_5000"
+    ],
+    "16": [
+      "scripts_check_examples",
+      "scripts_check_examples_check_balance",
+      "scripts_check_examples_check_repo",
+      "scripts_check_examples_cpp_blocks",
+      "scripts_check_examples_doc_files",
+      "scripts_check_examples_main",
+      "scripts_check_examples_py_path",
+      "scripts_check_examples_rationale_39",
+      "scripts_check_examples_rationale_62"
+    ],
+    "17": [
+      "skills_ios_port_skill",
+      "skills_ios_port_skill_1_the_order_of_work",
+      "skills_ios_port_skill_2_react_native_native_ios",
+      "skills_ios_port_skill_3_uikit_storyboard_swiftui_as_code",
+      "skills_ios_port_skill_4_web_ios",
+      "skills_ios_port_skill_5_behavior_parity_checklist",
+      "skills_ios_port_skill_6_what_not_to_do",
+      "skills_ios_port_skill_7_cross_skill_contract",
+      "skills_ios_port_skill_ios_port"
+    ],
+    "18": [
+      "tests_test_package_openai_plugin",
+      "tests_test_package_openai_plugin_load_packager",
+      "tests_test_package_openai_plugin_packagetests",
+      "tests_test_package_openai_plugin_packagetests_build",
+      "tests_test_package_openai_plugin_packagetests_setupclass",
+      "tests_test_package_openai_plugin_packagetests_test_package_holds_manifest_skills_and_icon",
+      "tests_test_package_openai_plugin_packagetests_test_package_icon_paths_resolve",
+      "tests_test_package_openai_plugin_packagetests_test_package_is_reproducible",
+      "tests_test_package_openai_plugin_packagetests_test_package_leaves_out_evals"
+    ],
+    "19": [
+      "completedprocess",
+      "tests_test_repo_gates",
+      "tests_test_repo_gates_buildgate",
+      "tests_test_repo_gates_buildgate_test_example_builds_and_tests",
+      "tests_test_repo_gates_gates",
+      "tests_test_repo_gates_gates_test_examples_are_balanced",
+      "tests_test_repo_gates_gates_test_skill_validator_passes",
+      "tests_test_repo_gates_run"
+    ],
+    "20": [
+      "tests_test_lints_config",
+      "tests_test_lints_config_swiftformatconfig",
+      "tests_test_lints_config_swiftformatconfig_test_format_file_pins_the_style",
+      "tests_test_lints_config_swiftlintconfig",
+      "tests_test_lints_config_swiftlintconfig_setup",
+      "tests_test_lints_config_swiftlintconfig_test_force_rules_are_opted_in",
+      "tests_test_lints_config_swiftlintconfig_test_length_budgets_are_pinned",
+      "tests_test_lints_config_swiftlintconfig_test_strict_reporting"
+    ],
+    "21": [
+      "claude_agents_client_ios_platform_reviewer",
+      "claude_agents_client_ios_platform_reviewer_app_ios_platform_reviewer",
+      "claude_agents_client_ios_platform_reviewer_core_mission",
+      "claude_agents_client_ios_platform_reviewer_expertise_areas",
+      "claude_agents_client_ios_platform_reviewer_guiding_principles",
+      "claude_agents_client_ios_platform_reviewer_output_format",
+      "claude_agents_client_ios_platform_reviewer_quality_standards"
+    ],
+    "22": [
+      "claude_agents_client_package_boundary_reviewer",
+      "claude_agents_client_package_boundary_reviewer_app_package_boundary_reviewer",
+      "claude_agents_client_package_boundary_reviewer_core_mission",
+      "claude_agents_client_package_boundary_reviewer_expertise_areas",
+      "claude_agents_client_package_boundary_reviewer_guiding_principles",
+      "claude_agents_client_package_boundary_reviewer_output_format",
+      "claude_agents_client_package_boundary_reviewer_quality_standards"
+    ],
+    "23": [
+      "claude_agents_client_swiftui_udf_reviewer",
+      "claude_agents_client_swiftui_udf_reviewer_app_swiftui_udf_reviewer",
+      "claude_agents_client_swiftui_udf_reviewer_core_mission",
+      "claude_agents_client_swiftui_udf_reviewer_expertise_areas",
+      "claude_agents_client_swiftui_udf_reviewer_guiding_principles",
+      "claude_agents_client_swiftui_udf_reviewer_output_format",
+      "claude_agents_client_swiftui_udf_reviewer_quality_standards"
+    ],
+    "24": [
+      "claude_agents_core_architect",
+      "claude_agents_core_architect_app_architect",
+      "claude_agents_core_architect_core_mission",
+      "claude_agents_core_architect_expertise_areas",
+      "claude_agents_core_architect_guiding_principles",
+      "claude_agents_core_architect_output_format",
+      "claude_agents_core_architect_quality_standards"
+    ],
+    "25": [
+      "claude_agents_core_build_resolver",
+      "claude_agents_core_build_resolver_app_build_resolver",
+      "claude_agents_core_build_resolver_core_mission",
+      "claude_agents_core_build_resolver_expertise_areas",
+      "claude_agents_core_build_resolver_guiding_principles",
+      "claude_agents_core_build_resolver_output_format",
+      "claude_agents_core_build_resolver_quality_standards"
+    ],
+    "26": [
+      "claude_agents_core_code_explorer",
+      "claude_agents_core_code_explorer_app_code_explorer",
+      "claude_agents_core_code_explorer_core_mission",
+      "claude_agents_core_code_explorer_expertise_areas",
+      "claude_agents_core_code_explorer_guiding_principles",
+      "claude_agents_core_code_explorer_output_format",
+      "claude_agents_core_code_explorer_quality_standards"
+    ],
+    "27": [
+      "claude_agents_core_code_reviewer",
+      "claude_agents_core_code_reviewer_app_code_reviewer",
+      "claude_agents_core_code_reviewer_core_mission",
+      "claude_agents_core_code_reviewer_expertise_areas",
+      "claude_agents_core_code_reviewer_guiding_principles",
+      "claude_agents_core_code_reviewer_output_format",
+      "claude_agents_core_code_reviewer_quality_standards"
+    ],
+    "28": [
+      "claude_agents_core_planner",
+      "claude_agents_core_planner_app_planner",
+      "claude_agents_core_planner_core_mission",
+      "claude_agents_core_planner_expertise_areas",
+      "claude_agents_core_planner_guiding_principles",
+      "claude_agents_core_planner_output_format",
+      "claude_agents_core_planner_quality_standards"
+    ],
+    "29": [
+      "claude_agents_core_tdd_guide",
+      "claude_agents_core_tdd_guide_app_tdd_guide",
+      "claude_agents_core_tdd_guide_core_mission",
+      "claude_agents_core_tdd_guide_expertise_areas",
+      "claude_agents_core_tdd_guide_guiding_principles",
+      "claude_agents_core_tdd_guide_output_format",
+      "claude_agents_core_tdd_guide_quality_standards"
+    ],
+    "30": [
+      "claude_agents_security_ios_security_reviewer",
+      "claude_agents_security_ios_security_reviewer_app_ios_security_reviewer",
+      "claude_agents_security_ios_security_reviewer_core_mission",
+      "claude_agents_security_ios_security_reviewer_expertise_areas",
+      "claude_agents_security_ios_security_reviewer_guiding_principles",
+      "claude_agents_security_ios_security_reviewer_output_format",
+      "claude_agents_security_ios_security_reviewer_quality_standards"
+    ],
+    "31": [
+      "claude_agents_testing_test_author",
+      "claude_agents_testing_test_author_app_test_author",
+      "claude_agents_testing_test_author_core_mission",
+      "claude_agents_testing_test_author_expertise_areas",
+      "claude_agents_testing_test_author_guiding_principles",
+      "claude_agents_testing_test_author_output_format",
+      "claude_agents_testing_test_author_quality_standards"
+    ],
+    "32": [
+      "claude_skills_add_package_skill",
+      "claude_skills_add_package_skill_app_add_package_skill",
+      "claude_skills_add_package_skill_core_principles",
+      "claude_skills_add_package_skill_output_format",
+      "claude_skills_add_package_skill_research_references",
+      "claude_skills_add_package_skill_rules",
+      "claude_skills_add_package_skill_when_to_activate"
+    ],
+    "33": [
+      "claude_skills_add_port_skill",
+      "claude_skills_add_port_skill_app_add_port_skill",
+      "claude_skills_add_port_skill_core_principles",
+      "claude_skills_add_port_skill_output_format",
+      "claude_skills_add_port_skill_research_references",
+      "claude_skills_add_port_skill_rules",
+      "claude_skills_add_port_skill_when_to_activate"
+    ],
+    "34": [
+      "claude_skills_add_route_skill",
+      "claude_skills_add_route_skill_app_add_route_skill",
+      "claude_skills_add_route_skill_core_principles",
+      "claude_skills_add_route_skill_output_format",
+      "claude_skills_add_route_skill_research_references",
+      "claude_skills_add_route_skill_rules",
+      "claude_skills_add_route_skill_when_to_activate"
+    ],
+    "35": [
+      "claude_skills_add_slice_skill",
+      "claude_skills_add_slice_skill_app_add_slice_skill",
+      "claude_skills_add_slice_skill_core_principles",
+      "claude_skills_add_slice_skill_output_format",
+      "claude_skills_add_slice_skill_research_references",
+      "claude_skills_add_slice_skill_rules",
+      "claude_skills_add_slice_skill_when_to_activate"
+    ],
+    "36": [
+      "claude_skills_claim_check_skill",
+      "claude_skills_claim_check_skill_app_claim_check_skill",
+      "claude_skills_claim_check_skill_core_principles",
+      "claude_skills_claim_check_skill_output_format",
+      "claude_skills_claim_check_skill_research_references",
+      "claude_skills_claim_check_skill_rules",
+      "claude_skills_claim_check_skill_when_to_activate"
+    ],
+    "37": [
+      "claude_skills_clean_room_rebuild_skill",
+      "claude_skills_clean_room_rebuild_skill_app_clean_room_rebuild_skill",
+      "claude_skills_clean_room_rebuild_skill_core_principles",
+      "claude_skills_clean_room_rebuild_skill_output_format",
+      "claude_skills_clean_room_rebuild_skill_research_references",
+      "claude_skills_clean_room_rebuild_skill_rules",
+      "claude_skills_clean_room_rebuild_skill_when_to_activate"
+    ],
+    "38": [
+      "claude_skills_corpus_retrieval_skill",
+      "claude_skills_corpus_retrieval_skill_app_corpus_retrieval_skill",
+      "claude_skills_corpus_retrieval_skill_core_principles",
+      "claude_skills_corpus_retrieval_skill_output_format",
+      "claude_skills_corpus_retrieval_skill_research_references",
+      "claude_skills_corpus_retrieval_skill_rules",
+      "claude_skills_corpus_retrieval_skill_when_to_activate"
+    ],
+    "39": [
+      "claude_skills_diagnosing_bugs_skill",
+      "claude_skills_diagnosing_bugs_skill_app_diagnosing_bugs_skill",
+      "claude_skills_diagnosing_bugs_skill_core_principles",
+      "claude_skills_diagnosing_bugs_skill_output_format",
+      "claude_skills_diagnosing_bugs_skill_research_references",
+      "claude_skills_diagnosing_bugs_skill_rules",
+      "claude_skills_diagnosing_bugs_skill_when_to_activate"
+    ],
+    "40": [
+      "claude_skills_domain_modeling_skill",
+      "claude_skills_domain_modeling_skill_app_domain_modeling_skill",
+      "claude_skills_domain_modeling_skill_core_principles",
+      "claude_skills_domain_modeling_skill_output_format",
+      "claude_skills_domain_modeling_skill_research_references",
+      "claude_skills_domain_modeling_skill_rules",
+      "claude_skills_domain_modeling_skill_when_to_activate"
+    ],
+    "41": [
+      "claude_skills_grilling_skill",
+      "claude_skills_grilling_skill_app_grilling_skill",
+      "claude_skills_grilling_skill_core_principles",
+      "claude_skills_grilling_skill_output_format",
+      "claude_skills_grilling_skill_research_references",
+      "claude_skills_grilling_skill_rules",
+      "claude_skills_grilling_skill_when_to_activate"
+    ],
+    "42": [
+      "claude_skills_learn_skill",
+      "claude_skills_learn_skill_app_learn_skill",
+      "claude_skills_learn_skill_core_principles",
+      "claude_skills_learn_skill_output_format",
+      "claude_skills_learn_skill_research_references",
+      "claude_skills_learn_skill_rules",
+      "claude_skills_learn_skill_when_to_activate"
+    ],
+    "43": [
+      "claude_skills_plan_skill",
+      "claude_skills_plan_skill_app_plan_skill",
+      "claude_skills_plan_skill_core_principles",
+      "claude_skills_plan_skill_output_format",
+      "claude_skills_plan_skill_research_references",
+      "claude_skills_plan_skill_rules",
+      "claude_skills_plan_skill_when_to_activate"
+    ],
+    "44": [
+      "claude_skills_research_skill",
+      "claude_skills_research_skill_app_research_skill",
+      "claude_skills_research_skill_core_principles",
+      "claude_skills_research_skill_output_format",
+      "claude_skills_research_skill_research_references",
+      "claude_skills_research_skill_rules",
+      "claude_skills_research_skill_when_to_activate"
+    ],
+    "45": [
+      "claude_skills_review_skill",
+      "claude_skills_review_skill_app_review_skill",
+      "claude_skills_review_skill_core_principles",
+      "claude_skills_review_skill_output_format",
+      "claude_skills_review_skill_research_references",
+      "claude_skills_review_skill_rules",
+      "claude_skills_review_skill_when_to_activate"
+    ],
+    "46": [
+      "claude_skills_ship_skill",
+      "claude_skills_ship_skill_app_ship_skill",
+      "claude_skills_ship_skill_core_principles",
+      "claude_skills_ship_skill_output_format",
+      "claude_skills_ship_skill_research_references",
+      "claude_skills_ship_skill_rules",
+      "claude_skills_ship_skill_when_to_activate"
+    ],
+    "47": [
+      "claude_skills_spec_skill",
+      "claude_skills_spec_skill_app_spec_skill",
+      "claude_skills_spec_skill_core_principles",
+      "claude_skills_spec_skill_output_format",
+      "claude_skills_spec_skill_research_references",
+      "claude_skills_spec_skill_rules",
+      "claude_skills_spec_skill_when_to_activate"
+    ],
+    "48": [
+      "claude_skills_tdd_skill",
+      "claude_skills_tdd_skill_app_tdd_skill",
+      "claude_skills_tdd_skill_core_principles",
+      "claude_skills_tdd_skill_output_format",
+      "claude_skills_tdd_skill_research_references",
+      "claude_skills_tdd_skill_rules",
+      "claude_skills_tdd_skill_when_to_activate"
+    ],
+    "49": [
+      "claude_skills_verified_status_skill",
+      "claude_skills_verified_status_skill_app_verified_status_skill",
+      "claude_skills_verified_status_skill_core_principles",
+      "claude_skills_verified_status_skill_output_format",
+      "claude_skills_verified_status_skill_research_references",
+      "claude_skills_verified_status_skill_rules",
+      "claude_skills_verified_status_skill_when_to_activate"
+    ],
+    "50": [
+      "claude_skills_visual_review_skill",
+      "claude_skills_visual_review_skill_app_visual_review_skill",
+      "claude_skills_visual_review_skill_core_principles",
+      "claude_skills_visual_review_skill_output_format",
+      "claude_skills_visual_review_skill_research_references",
+      "claude_skills_visual_review_skill_rules",
+      "claude_skills_visual_review_skill_when_to_activate"
+    ],
+    "51": [
+      "claude_skills_graphify_references_query",
+      "claude_skills_graphify_references_query_for_graphify_explain",
+      "claude_skills_graphify_references_query_for_graphify_path",
+      "claude_skills_graphify_references_query_graphify_reference_query_path_explain",
+      "claude_skills_graphify_references_query_step_0_constrained_query_expansion_required_before_traversal",
+      "claude_skills_graphify_references_query_step_1_traversal"
+    ],
+    "52": [
+      "scripts_package_openai_plugin",
+      "scripts_package_openai_plugin_build",
+      "scripts_package_openai_plugin_main",
+      "scripts_package_openai_plugin_package_files",
+      "scripts_package_openai_plugin_py_path",
+      "scripts_package_openai_plugin_rationale_30"
+    ],
+    "53": [
+      "claude",
+      "claude_beautifulios_agent_instructions",
+      "claude_graphify",
+      "claude_model_routing_claude_code_ollama"
+    ],
+    "54": [
+      "claude_skills_graphify_references_add_watch",
+      "claude_skills_graphify_references_add_watch_for_graphify_add",
+      "claude_skills_graphify_references_add_watch_for_watch",
+      "claude_skills_graphify_references_add_watch_graphify_reference_add_a_url_and_watch_a_folder"
+    ],
+    "55": [
+      "claude_skills_graphify_references_hooks",
+      "claude_skills_graphify_references_hooks_for_git_commit_hook",
+      "claude_skills_graphify_references_hooks_for_native_claude_md_integration",
+      "claude_skills_graphify_references_hooks_graphify_reference_commit_hook_and_native_claude_md_integration"
+    ],
+    "56": [
+      "claude_skills_graphify_references_update",
+      "claude_skills_graphify_references_update_for_cluster_only",
+      "claude_skills_graphify_references_update_for_update_incremental_re_extraction",
+      "claude_skills_graphify_references_update_graphify_reference_incremental_update_and_cluster_only"
+    ],
+    "57": [
+      "scripts_hooks_guard_bash",
+      "scripts_hooks_guard_bash_has",
+      "scripts_hooks_guard_bash_has_i",
+      "scripts_hooks_guard_bash_sh__entry"
+    ],
+    "58": [
+      "claude_commands_add_package",
+      "claude_commands_add_package_add_package",
+      "claude_commands_add_package_delegate"
+    ],
+    "59": [
+      "claude_commands_add_port",
+      "claude_commands_add_port_add_port",
+      "claude_commands_add_port_delegate"
+    ],
+    "60": [
+      "claude_commands_add_route",
+      "claude_commands_add_route_add_route",
+      "claude_commands_add_route_delegate"
+    ],
+    "61": [
+      "claude_commands_add_slice",
+      "claude_commands_add_slice_add_slice",
+      "claude_commands_add_slice_delegate"
+    ],
+    "62": [
+      "claude_commands_claim_check",
+      "claude_commands_claim_check_claim_check",
+      "claude_commands_claim_check_delegate"
+    ],
+    "63": [
+      "claude_commands_clean_room_rebuild",
+      "claude_commands_clean_room_rebuild_clean_room_rebuild",
+      "claude_commands_clean_room_rebuild_delegate"
+    ],
+    "64": [
+      "claude_commands_corpus_retrieval",
+      "claude_commands_corpus_retrieval_corpus_retrieval",
+      "claude_commands_corpus_retrieval_delegate"
+    ],
+    "65": [
+      "claude_commands_diagnosing_bugs",
+      "claude_commands_diagnosing_bugs_delegate",
+      "claude_commands_diagnosing_bugs_diagnosing_bugs"
+    ],
+    "66": [
+      "claude_commands_domain_modeling",
+      "claude_commands_domain_modeling_delegate",
+      "claude_commands_domain_modeling_domain_modeling"
+    ],
+    "67": [
+      "claude_commands_grilling",
+      "claude_commands_grilling_delegate",
+      "claude_commands_grilling_grilling"
+    ],
+    "68": [
+      "claude_commands_learn",
+      "claude_commands_learn_delegate",
+      "claude_commands_learn_learn"
+    ],
+    "69": [
+      "claude_commands_plan",
+      "claude_commands_plan_delegate",
+      "claude_commands_plan_plan"
+    ],
+    "70": [
+      "claude_commands_research",
+      "claude_commands_research_delegate",
+      "claude_commands_research_research"
+    ],
+    "71": [
+      "claude_commands_review",
+      "claude_commands_review_delegate",
+      "claude_commands_review_review"
+    ],
+    "72": [
+      "claude_commands_ship",
+      "claude_commands_ship_delegate",
+      "claude_commands_ship_ship"
+    ],
+    "73": [
+      "claude_commands_spec",
+      "claude_commands_spec_delegate",
+      "claude_commands_spec_spec"
+    ],
+    "74": [
+      "claude_commands_tdd",
+      "claude_commands_tdd_delegate",
+      "claude_commands_tdd_tdd"
+    ],
+    "75": [
+      "claude_commands_verified_status",
+      "claude_commands_verified_status_delegate",
+      "claude_commands_verified_status_verified_status"
+    ],
+    "76": [
+      "claude_commands_visual_review",
+      "claude_commands_visual_review_delegate",
+      "claude_commands_visual_review_visual_review"
+    ],
+    "77": [
+      "claude_rules_playbooks",
+      "claude_rules_playbooks_cross_repo_relationship_1_n",
+      "claude_rules_playbooks_playbooks_for_beautifulios_load_on_demand"
+    ],
+    "78": [
+      "claude_skills_graphify_references_github_and_merge",
+      "claude_skills_graphify_references_github_and_merge_graphify_reference_github_clone_and_cross_repo_merge",
+      "claude_skills_graphify_references_github_and_merge_step_0_clone_github_repo_s_only_if_a_github_url_was_given"
+    ],
+    "79": [
+      "claude_skills_graphify_references_transcribe",
+      "claude_skills_graphify_references_transcribe_graphify_reference_transcribe_video_and_audio",
+      "claude_skills_graphify_references_transcribe_step_2_5_transcribe_video_audio_files_only_if_video_files_detected"
+    ],
+    "80": [
+      "claude_claude",
+      "claude_claude_graphify"
+    ],
+    "81": [
+      "claude_readme",
+      "claude_readme_claude_this_repo_s_claude_code_kit"
+    ],
+    "82": [
+      "claude_skills_claim_check_credits",
+      "claude_skills_claim_check_credits_credits"
+    ],
+    "83": [
+      "claude_skills_clean_room_rebuild_credits",
+      "claude_skills_clean_room_rebuild_credits_credits"
+    ],
+    "84": [
+      "claude_skills_corpus_retrieval_credits",
+      "claude_skills_corpus_retrieval_credits_credits"
+    ],
+    "85": [
+      "claude_skills_diagnosing_bugs_credits",
+      "claude_skills_diagnosing_bugs_credits_credits"
+    ],
+    "86": [
+      "claude_skills_domain_modeling_credits",
+      "claude_skills_domain_modeling_credits_credits"
+    ],
+    "87": [
+      "claude_skills_graphify_references_extraction_spec",
+      "claude_skills_graphify_references_extraction_spec_graphify_reference_extraction_subagent_prompt"
+    ],
+    "88": [
+      "claude_skills_grilling_credits",
+      "claude_skills_grilling_credits_credits"
+    ],
+    "89": [
+      "claude_skills_research_credits",
+      "claude_skills_research_credits_credits"
+    ],
+    "90": [
+      "claude_skills_tdd_credits",
+      "claude_skills_tdd_credits_credits"
+    ],
+    "91": [
+      "claude_skills_verified_status_credits",
+      "claude_skills_verified_status_credits_credits"
+    ],
+    "92": [
+      "claude_skills_visual_review_credits",
+      "claude_skills_visual_review_credits_credits"
+    ],
+    "93": [
+      "examples_minimal_package",
+      "packagedescription"
+    ],
+    "94": [
+      "scripts_check_build",
+      "scripts_check_build_sh__entry"
+    ],
+    "95": [
+      "scripts_check_lints",
+      "scripts_check_lints_sh__entry"
+    ],
+    "96": [
+      "tests_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.1551418439716312,
+    "1": 0.16376306620209058,
+    "2": 0.0746031746031746,
+    "3": 0.0625,
+    "4": 0.06666666666666667,
+    "5": 0.08,
+    "6": 0.2510822510822511,
+    "7": 0.1111111111111111,
+    "8": 0.11764705882352941,
+    "9": 0.11764705882352941,
+    "10": 0.16666666666666666,
+    "11": 0.2909090909090909,
+    "12": 0.2,
+    "13": 0.2,
+    "14": 0.2,
+    "15": 0.2222222222222222,
+    "16": 0.3888888888888889,
+    "17": 0.2222222222222222,
+    "18": 0.3611111111111111,
+    "19": 0.35714285714285715,
+    "20": 0.25,
+    "21": 0.2857142857142857,
+    "22": 0.2857142857142857,
+    "23": 0.2857142857142857,
+    "24": 0.2857142857142857,
+    "25": 0.2857142857142857,
+    "26": 0.2857142857142857,
+    "27": 0.2857142857142857,
+    "28": 0.2857142857142857,
+    "29": 0.2857142857142857,
+    "30": 0.2857142857142857,
+    "31": 0.2857142857142857,
+    "32": 0.2857142857142857,
+    "33": 0.2857142857142857,
+    "34": 0.2857142857142857,
+    "35": 0.2857142857142857,
+    "36": 0.2857142857142857,
+    "37": 0.2857142857142857,
+    "38": 0.2857142857142857,
+    "39": 0.2857142857142857,
+    "40": 0.2857142857142857,
+    "41": 0.2857142857142857,
+    "42": 0.2857142857142857,
+    "43": 0.2857142857142857,
+    "44": 0.2857142857142857,
+    "45": 0.2857142857142857,
+    "46": 0.2857142857142857,
+    "47": 0.2857142857142857,
+    "48": 0.2857142857142857,
+    "49": 0.2857142857142857,
+    "50": 0.2857142857142857,
+    "51": 0.3333333333333333,
+    "52": 0.5333333333333333,
+    "53": 0.5,
+    "54": 0.5,
+    "55": 0.5,
+    "56": 0.5,
+    "57": 0.8333333333333334,
+    "58": 0.6666666666666666,
+    "59": 0.6666666666666666,
+    "60": 0.6666666666666666,
+    "61": 0.6666666666666666,
+    "62": 0.6666666666666666,
+    "63": 0.6666666666666666,
+    "64": 0.6666666666666666,
+    "65": 0.6666666666666666,
+    "66": 0.6666666666666666,
+    "67": 0.6666666666666666,
+    "68": 0.6666666666666666,
+    "69": 0.6666666666666666,
+    "70": 0.6666666666666666,
+    "71": 0.6666666666666666,
+    "72": 0.6666666666666666,
+    "73": 0.6666666666666666,
+    "74": 0.6666666666666666,
+    "75": 0.6666666666666666,
+    "76": 0.6666666666666666,
+    "77": 0.6666666666666666,
+    "78": 0.6666666666666666,
+    "79": 0.6666666666666666,
+    "80": 1.0,
+    "81": 1.0,
+    "82": 1.0,
+    "83": 1.0,
+    "84": 1.0,
+    "85": 1.0,
+    "86": 1.0,
+    "87": 1.0,
+    "88": 1.0,
+    "89": 1.0,
+    "90": 1.0,
+    "91": 1.0,
+    "92": 1.0,
+    "93": 1.0,
+    "94": 1.0,
+    "95": 1.0,
+    "96": 1.0
+  },
+  "gods": [
+    {
+      "id": "tests_test_check_skill_checkskilltests",
+      "label": "CheckSkillTests",
+      "degree": 37
+    },
+    {
+      "id": "tests_test_check_skill_build_valid_repo",
+      "label": "build_valid_repo()",
+      "degree": 32
+    },
+    {
+      "id": "scripts_check_skill_checker",
+      "label": "Checker",
+      "degree": 26
+    },
+    {
+      "id": "tests_test_check_skill_write",
+      "label": "write()",
+      "degree": 24
+    },
+    {
+      "id": "scripts_check_skill_yamlparser",
+      "label": "YamlParser",
+      "degree": 16
+    },
+    {
+      "id": "skills_ios_best_practices_skill_ios_best_practices",
+      "label": "iOS best practices",
+      "degree": 16
+    },
+    {
+      "id": "readme_beautiful_ios",
+      "label": "Beautiful iOS",
+      "degree": 15
+    },
+    {
+      "id": "plugin_com_openai_interface",
+      "label": "interface",
+      "degree": 14
+    },
+    {
+      "id": "claude_skills_graphify_skill_what_you_must_do_when_invoked",
+      "label": "What You Must Do When Invoked",
+      "degree": 12
+    },
+    {
+      "id": "tests_test_check_skill_add_portable_plugin",
+      "label": "add_portable_plugin()",
+      "degree": 11
+    }
+  ],
+  "surprises": [
+    {
+      "source": "problems_to_json()",
+      "target": "Any",
+      "source_files": [
+        "scripts/check-skill.py",
+        ""
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "note": "Bridges community 6 → community 1"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `Beautiful iOS` connect `Beautiful iOS` to `iOS architecture contract`?",
+      "why": "High betweenness centrality (0.003) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `PackageDescription`, `Observation`, `loading` to the rest of the system?",
+      "why": "370 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `InventoryState` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.0746031746031746 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `iOS architecture contract` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.0625 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `interface` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `What You Must Do When Invoked` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Beautiful iOS` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
