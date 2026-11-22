@@ -1,6 +1,6 @@
 {
   "name": "beautiful-ios",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Write, review, port, and enforce idiomatic native iOS apps in Swift 6 + SwiftUI written as code: three skills distilled from Apple's SwiftUI and concurrency documentation, the App Store guidance, and the facta iOS handbook, plus a drop-in SwiftLint and swift-format config.",
   "license": "MIT",
   "author": {
